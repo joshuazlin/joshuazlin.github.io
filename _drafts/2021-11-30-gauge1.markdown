@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Thoughts on gauge (I) : Bundles and Connections"
+title:  "Gauge Theory (I) : Bundles and Connections"
 date:   2021-11-30 
 categories: physics
 ---
@@ -8,6 +8,37 @@ categories: physics
 References: 
  - Kobayashi and Nomizu, Volume 1
  - Characteristic Forms and Geometric Invariants (Chern and Simons), the introduction 
+
+## 0. Lie Algebra Review, Left/Right Shenanigans
+
+It is truly amazing how much pain can be caused by different left/right action conventions, when one is rusty. So, I thought I should write down my conventions so that I can remember forevermore. 
+
+<def> Vector fields on a smooth manifold \(M\) should be thought of as endomorphisms on the space of functions from \(M\) to \(\mathbb{R}\). We can define a Lie Algebra structure on this space by the rule:
+$$[X,Y](f) = \left( f \mapsto X(Y(f)) - Y(X(f)) \right) $$
+Note that here we have implicitly assumed that the vector fields act on the left. We can also let them act on the right via the same rule, 
+$$(f)[X,Y]^{\text{op}} = \left( f \mapsto ((f)X)Y - ((f)Y)X \right) $$
+Note that this is the <i>opposite</i> Lie Algebra, in other words the bracket operation is given by \([\cdot,\cdot]^\text{op} = -[\cdot,\cdot]\). We will however stick to the first convention. 
+ </def>
+
+<def> A Lie Group \(G\) is a smooth manifold equipped with a nice group action \(G \times G \to G\). </def>
+
+The funny thing is that $$G$$ comes equipped with both a left $$G$$-action, and a right $$G$$-action. The Lie Algebra $$\mathfrak{g}$$ will be identified with the tangent space at the identity, but the choice of $$[,]$$ depends on a convention:
+
+<def> We can define a lie bracket \([,]\) on the tangent space at identity by identifying it with left/right invariant vector fields on \(G\) by pushing it forward either with the left-action \(g(X)\) or via the right-action \((X)g\). The image of this map defines a closed subalgebra of the Lie Algebra of left/right-acting Vector Fields on \(G\).
+</def>
+
+<proof>
+Here I will just give a sketch of a flavor of the proof. The important point is that the bracket of invariant vector fields is once again invariant. For instance, in the case of left-invariant vector fields, 
+(h[g_1X,g_2X])(f) = 
+</proof>
+
+Note that the left-invariant and right-invariant fields associated to a given lie algebra element $$X$$ are <i>not</i> necessarily the same, furthermore the lie bracket operation is not necessarily the same either, however they lead to isomorphic structures
+
+<lem>The Lie Algebra defined by the left-invariant fields is isomorphic to the Lie Algebra defined by the right-invariant fields</lem>
+
+<proof>
+
+</proof>
 
 ## 1. Ehresmann Connections
 
@@ -25,8 +56,9 @@ To define parallel transport, for every point $$p \in P$$, and every path $$\gam
 
 With this data, there is a number of observations we can make about the tangent space structure. Recall that the Lie Algebra of a Lie group is defined as the space of left-invariant vector fields, $$g_* X = X$$, equipped with the lie bracket $$[X,Y](f) = X(Y(f)) - Y(X(f))$$. This may also just be identified with the tangent space at the identity. 
 
-<lem>Suppose we have some manifold \(M\) on which \(G\) acts smoothly. This is the same data as a map \(G \to \text{Diff}(M)\) to the lie group of diffeomorphisms on \(M\) - this induces a lie algebra map from \(\mathfrak{g}\) to the lie algebra of smooth vector fields \(\text{Vect}(M)\). To write this out explicitly, using the definition that vectors are given by differentiations of germs of functions, 
-$$X \mapsto \left(f \mapsto \frac{d}{dt} f(e^{tX} x) \bigg|_{t = 0}\right), \quad X \in \mathfrak{g}, x \in M$$
+<lem>Suppose we have some manifold \(M\) on which \(G\) acts smoothly. This is the same data as a map \(G \to \text{Diff}(M)\) to the lie group of diffeomorphisms on \(M\) - this induces a lie algebra map \(\alpha\) from \(\mathfrak{g}\) to the lie algebra of smooth vector fields \(\text{Vect}(M)\). To write this out explicitly, 
+$$\alpha : X \mapsto \left(f \mapsto \frac{d}{dt} f(e^{tX} x) \bigg|_{t = 0}\right), \quad X \in \mathfrak{g}, x \in M$$
+
 </lem>
 
 <lem>As \(G\) acts on each fiber, the map described above induces an isomorphism \(V_p \simeq \mathfrak{g}\). Furthermore, \(H_p\) becomes isomorphic to \(TM_{\pi(p)}\) by the action of the \(\pi\) map.</lem>
@@ -37,57 +69,56 @@ This last observation is what allows us to uniquely define the parallel transpor
 
 In the literature however, you will usually see the connection provided as a $$\mathfrak{g}$$-valued one form, so let's first discuss what that means.
 
-## 2. Forms
+## 2. Differential Forms
 
-<def>Suppose we have some manifold \(M\), then a \(V\)-valued \(k\)-form is a section of the tensor bundle \((V \times M) \otimes \wedge^k T^*M\). We denote \(\wedge^{k,l}(M)\) as the space of \(\mathfrak{g}^{\otimes l}\) -valued \(k\)-forms. On this structure, we can define certain operations:
+<def>Suppose we have some manifold \(M\), then a \(V\)-valued \(k\)-form is a section of the tensor bundle \((V \times M) \otimes \wedge^k T^*M\). We denote \(\wedge^{k,l}(M)\) as the space of \(V^{\otimes l}\) -valued \(k\)-forms. On this structure, we can define certain operations:
 $$\begin{align}
 d &: \wedge^{k,l}(M) \to \wedge^{k+1,l}(M) \\
 \wedge &: \wedge^{k_1,l_1}(M) \otimes \wedge^{k_2,l_2}(M) \to \wedge^{k_1+k_2,l_1+l_2}(M) \\
-[\cdot \wedge \cdot] &: \wedge^{k_1,1}(M) \otimes \wedge^{k_2,1}(M) \to \wedge^{k_1+k_2,1}(M)
 \end{align}$$
 $$\begin{align}
 d(g_{i_1\dots i_k} dx^{i_1} \wedge \dots \wedge dx^{i_k}) &= \frac{\partial g_{i_1\dots i_k}}{\partial x_j} dx^j \wedge dx^{i-1} \wedge \dots \wedge dx^{i_k} \\
 \phi_1 \wedge \phi_2 (X_1,\dots,X_{k_1+k_2}) &= \sum_{\sigma \in S_{k_1+k_2}} (-1)^{\sigma} \phi_1 (X_{\sigma(1)},\dots,X_{\sigma(k_1)}) \otimes \phi_2 (X_{\sigma(k_1+1)},\dots,X_{\sigma(k_1+k_2)})\\
-[\phi_1 \wedge \phi_2] (X_1,\dots,X_{k_1+k_2}) &= \sum_{\sigma \in S_{k_1+k_2}} (-1)^{\sigma} [\phi_1 (X_{\sigma(1)},\dots,X_{\sigma(k_1)}) ,\phi_2 (X_{\sigma(k_1+1)},\dots,X_{\sigma(k_1+k_2)})]\\
 \end{align}$$
+</def>
+
+<def>
+In the special case that \(V = \mathfrak{g}\), we can utilise the structure of the commutator on \(\mathfrak{g}\) to define a new type of operation:
+
+$$[\cdot \wedge \cdot] : \wedge^{k_1,1}(M) \otimes \wedge^{k_2,1}(M) \to \wedge^{k_1+k_2,1}(M)$$
+$$[\phi_1 \wedge \phi_2] (X_1,\dots,X_{k_1+k_2}) = \sum_{\sigma \in S_{k_1+k_2}} (-1)^{\sigma} [\phi_1 (X_{\sigma(1)},\dots,X_{\sigma(k_1)}) ,\phi_2 (X_{\sigma(k_1+1)},\dots,X_{\sigma(k_1+k_2)})]$$
 </def>
 
 Note that there are various different notations for the last product, sometimes you see $$[,]$$, or sometimes just $$\wedge$$, so be careful. It should mostly be clear from context however - if you are meant to end up with a $$\mathfrak{g}$$-valued one-form from two others, you have to take the lie bracket. There is a 'complementary' data structure, what we might call a 'gauged-field':
 
-<def>A pseudotensorial form is the data of a representation \(\rho : G \to GL(V)\) of the gauge group, along with a \(V\)-valued \(k\)-form \(\psi\) on \(P\) such that the two natural ways to act on it via gauge transformations agree. That is to say, a gauge transformation \(\Omega : M \to G\) gives an action on \(P\) that you can pull \(\psi\) back from; you can also act via the represenation. A pseudotensorial form is tensorial if it is horizontal in the sense that \(\psi(X_1,\dots,X_k)\) is zero when one of the \(X_i\) is vertical.</def>
+<def>A <i>pseudotensorial form</i> is the data of a representation \(\rho : G \to GL(V)\) of the gauge group, along with a \(V\)-valued \(k\)-form \(\psi\) on \(P\) such that the two natural ways to act on it via gauge transformations agree. That is to say, a gauge transformation \(\Omega : M \to G\) gives an action on \(P\) that you can pull \(\psi\) back from; you can also act via the represenation. A pseudotensorial form is <i>tensorial</i> if it is horizontal in the sense that \(\psi(X_1,\dots,X_k)\) is zero when one of the \(X_i\) is vertical.</def>
 
 Tensorial forms on $$P$$ are special because they can be naturally associated with forms on $$M$$ given a trivialisation of the bundle on some subspace of $$M$$:
 
-<def>Given a smooth section \( \sigma : U \to P, \pi \circ \sigma = \text{Id}_U \), we can identify the bundle \( \pi : \pi^{-1}(U) \to U\) as a trivial bundle, \(\pi^{-1}(U) \simeq G \times U\), via the identification \((g,u) \mapsto g\sigma(u)\). Given a tensorial \(\mathfrak{g}\)-valued \(k\)-form \(\psi\) living on \(\pi^{-1}(U)\), we can pull it back via \(\sigma\) to get a \(\mathfrak{g}\)-valued \(k\)-form \(\sigma^* \psi\) living on \(U\). Conversely, given a \(\psi\) living on \(U\), we can pull it back via \(\pi\) to get a \(\mathfrak{g}\)-valued \(k\)-form living on \(\sigma(U)\), which we can extend via gauge actions to be defined on all of \(\pi^{-1}(U)\).</def>
+<def>Given a smooth section \( \sigma : U \to P, \pi \circ \sigma = \text{Id}_U \), we can identify the bundle \( \pi : \pi^{-1}(U) \to U\) as a trivial bundle, \(\pi^{-1}(U) \simeq G \times U\), via the identification \((g,u) \mapsto g\sigma(u)\). Given a tensorial \(\mathfrak{g}\)-valued \(k\)-form \(\psi\) living on \(\pi^{-1}(U)\), we can pull it back via \(\sigma\) to get a \(\mathfrak{g}\)-valued \(k\)-form \(\sigma^* \psi\) living on \(U\). Conversely, given a \(\psi\) living on \(U\), we can pull it back via \(\pi\) to get a \(\mathfrak{g}\)-valued \(k\)-form living on \(\pi^{-1}(U)\).</def>
 
-On the structure of (pseudo)-tensorial forms, we have various operations available to us:
+The intuition here is that a form on the base space $$M$$, once lifted back to $$P$$, only have horizontal degrees of freedom, as the vertical degrees are projected out by $$\pi$$. On the structure of (pseudo)-tensorial forms, we have various operations available to us:
 
-<def>Just as with generic \(\mathfrak{g}\)-valued forms, if we denote the (pseudo)-tensorial \(k\)-forms associated with a representation \(\rho : G \to GL(V)\) as \( \wedge^{k,(\rho,V)}(P) \)
-$$\begin{align}
-d &: \wedge^{k,(\rho,V)}(P) \to \wedge^{k+1,(\rho,V)}(P) \\
-\wedge &: \wedge^{k_1,(\rho_1,V_1)}(P) \otimes \wedge^{k_2,(\rho_2,V_2)}(P) \to \wedge^{k_1+k_2,(\rho_1 \otimes \rho_2,V_1 \otimes V_2)}(P) \\
-\end{align}$$
-with the formulae the same as in the case of the \(\mathfrak{g}\)-valued forms. Additionally, if we have the data of a connection, we can define:
+<def>If we have the data of a connection, we can define:
 $$h : \wedge^{k,(\rho,V)}(P) \to \wedge^{k,(\rho,V)}(P)$$
 whose image consists of strictly <i>tensorial</i> forms. This is defined by using the projection \(h : TP_p \to H_p\) afforded to us by the connection:
 $$h \psi (X_1,\dots,X_k) = \psi(hX_1,\dots,hX_k)$$
 Using \(h\), we can finally define the <i>covariant derivative</i> of a pseudo-tensorial form, \(D\phi = h(d\phi)\). 
 </def>
 
-Note that there are various compatibility relations between everything just stated:
+Note that $$d, \wedge$$ preserve the property of being tensorial. 
+<warn>Projection operators, defined as operators \(P\) such that \(P^2 = P\), are <i>not</i> naturally associated with the subspace that they project onto. Without additional structure, there are many different choices of projection operators that project onto the same subspace. For example, imagine \(\mathbb{R}^2\), if we project onto the \(y\)-axis, we can have an operator with the \(x\)-axis as kernel, and also a different one with the subspace spanned by \((1,1)\) as kernel. </warn>
 
- - The $$d,\wedge$$ are the same between $$\mathfrak{g}^{\otimes l}$$-valued forms and between pseudo-tensorial forms. 
- - $$d,\wedge$$ preserve the property of being tensorial. 
+## 3. The Connection as a Form
 
 Now, let's return to our original goal of describing connections as $$\mathfrak{g}$$-valued $$1$$-forms. 
 
-<lem>Given an Ehresmann connection, we can canonically associate to it a \(\mathfrak{g}\)-valued \(1\)-form \(A\), which is just the 'projection onto \(V_p\)'. To be a little more precise, our one form \(A \in T^*P \otimes \mathfrak{g} = A_{ij} X^j dx^i\) on some coordinate patch, with \(X^j\) as the generators of \(\mathfrak{g}\). Then, if we have some vector \(v = v^{(h)} + v^{(v)}\) that splits into horizontal and vertical components, the statement is that \(Av = A_{ij} v^i X^j = {v^{(v)}}^j\) using the isomorphism of \(\mathfrak{g}\) with \(V_p\). </lem>
+<lem>Given an Ehresmann connection, we can canonically associate to it a \(\mathfrak{g}\)-valued \(1\)-form \(A\), which is just the 'projection onto \(V_p\)'. To be a little more precise, our one-form \(A\) acts on vectors like the following:
+$$v = v^{(h)} + v^{(v)} \mapsto A(v) \in \mathfrak{g} \mapsto v^{(v)}$$
+where \(v^{(h)}, v^{(v)}\) are the horizontal, vertical components of a vector \(v\), \(A\) maps vectors to elements in \(\mathfrak{g}\), and finally under the isomorphism \(\mathfrak{g} \simeq V_p\) the lie algebra element gets mapped back to \(v^{(v)}\). 
+</lem>
 
-<warn>Projection operators, defined as operators \(P\) such that \(P^2 = P\), are <i>not</i> naturally associated with the subspace that they project onto. Without additional structure, there are many different choices of projection operators that project onto the same subspace. For example, imagine \(\mathbb{R}^2\), if we project onto the \(y\)-axis, we can have an operator with the \(x\)-axis as kernel, and also a different one with the subspace spanned by \((1,1)\) as kernel. </warn>
-
-In particular, the projection onto $$V_p$$ does actually depend on the choice of $$H_p$$: the projection operator in this case is defined to have $$H_p$$ as its kernel. 
-
-<lem>Recall that the gauge condition forces \(A = X^i dx^i\), where the \(dx^i\) are naturally associated to the lie algebra generators \(X^i\). If we then have some gauge transformation \(\Omega : M \to G\), then we can compare the actions of pulling the one-form back along the action of \(\Omega\), and also the action of \(\Omega\) on the lie algebra via the adjoint representation. These actions agree, in other words \(A\) is a pseudo-tensorial \(\mathfrak{g}\)-valued one-form in the adjoint rep.
+<lem> \(A\) is pseudo-tensorial.
 </lem>
 
 <proof>The proof that I do seem to have is fairly ugly, so forgive me. Denote the original form by \(A\) so that the pulled back form is \(\Omega^* A\), and we want to compare the two at a point \(p\). In local coordinates, \(A = X^i dx^i\)</proof>
@@ -104,7 +135,8 @@ Note that all the $$\Phi(u)$$ are conjugate subgroups in $$G$$ (since if you hav
 
 <thm>The key fact is that \(\Phi^0(u)\) forms a connected, normal Lie subgroup of \(G\), and that \(\Phi(u)\) is just \(\Phi^0(u)\) but with a bunch of disjoint components. </thm>
 
-
+## -1 : Concluding Remarks
+ - It's kind of funny how wordy differential geometry can be. I want to draw pictures, but it's somehow just "geometric feelings in my head". I don't know if the cartoons I write down have any meaning to anyone else. 
 
 
 
