@@ -1,0 +1,145 @@
+---
+layout: post
+title:  "Gauge Theory (I) : Bundles and Connections"
+date:   2021-11-30 
+categories: physics
+---
+
+References: 
+ - Kobayashi and Nomizu, Volume 1
+ - Characteristic Forms and Geometric Invariants (Chern and Simons), the introduction 
+
+## 0. Lie Algebra Review, Left/Right Shenanigans
+
+It is truly amazing how much pain can be caused by different left/right action conventions, when one is rusty. So, I thought I should write down my conventions so that I can remember forevermore. 
+
+<def> Vector fields on a smooth manifold \(M\) should be thought of as endomorphisms on the space of functions from \(M\) to \(\mathbb{R}\). We can define a Lie Algebra structure on this space by the rule:
+$$[X,Y](f) = \left( f \mapsto X(Y(f)) - Y(X(f)) \right) $$
+Note that here we have implicitly assumed that the vector fields act on the left. We can also let them act on the right via the same rule, 
+$$(f)[X,Y]^{\text{op}} = \left( f \mapsto ((f)X)Y - ((f)Y)X \right) $$
+Note that this is the <i>opposite</i> Lie Algebra, in other words the bracket operation is given by \([\cdot,\cdot]^\text{op} = -[\cdot,\cdot]\). We will however stick to the first convention. 
+ </def>
+
+<def> A Lie Group \(G\) is a smooth manifold equipped with a nice group action \(G \times G \to G\). </def>
+
+The funny thing is that $$G$$ comes equipped with both a left $$G$$-action, and a right $$G$$-action. The Lie Algebra $$\mathfrak{g}$$ will be identified with the tangent space at the identity, but the choice of $$[,]$$ depends on a convention:
+
+<def> We can define a lie bracket \([,]\) on the tangent space at identity by identifying it with left/right invariant vector fields on \(G\) by pushing it forward either with the left-action \(g(X)\) or via the right-action \((X)g\). The image of this map defines a closed subalgebra of the Lie Algebra of left/right-acting Vector Fields on \(G\).
+</def>
+
+<proof>
+Here I will just give a sketch of a flavor of the proof. The important point is that the bracket of invariant vector fields is once again invariant. For instance, in the case of left-invariant vector fields, 
+(h[g_1X,g_2X])(f) = 
+</proof>
+
+Note that the left-invariant and right-invariant fields associated to a given lie algebra element $$X$$ are <i>not</i> necessarily the same, furthermore the lie bracket operation is not necessarily the same either, however they lead to isomorphic structures
+
+<lem>The Lie Algebra defined by the left-invariant fields is isomorphic to the Lie Algebra defined by the right-invariant fields</lem>
+
+<proof>
+
+</proof>
+
+## 1. Ehresmann Connections
+
+<def> For a given group \(G\), a <i>principle bundle</i> is a smooth map \(\pi : P \to M\), where every fiber \(\pi^{-1}(x), x \in M\) comes equipped with a free, irreducible, smooth action of \(G\). We will denote this action simply by left multiplication, so that free-ness is expressed as \(g_1 \neq g_2 \implies g_1 p \neq g_2 p\) and irreduciblitiy is expressed as the fact that there is no \(G\)-invariant strict subspace of any fiber.</def>
+
+In other words - every fiber is a copy of $$G$$ where you have forgotten where the identity is, otherwise known as a $$G$$-torsor.
+
+<def> The gauge group \(\Omega_P\) is then the group of smooth functions \(\Omega : M \to G\), where element-wise multiplication is the group product. Note that \(\Omega_P\) naturally acts on \(P\) by acting element-wise on each fiber. </def>
+
+To define parallel transport, for every point $$p \in P$$, and every path $$\gamma : [0,1] \to M, \gamma(0) = \pi(p)$$, we need to know how to transport $$p$$ along $$\gamma$$. To do this, we can introduce an Ehresmann connection. 
+
+![connection](/assets/connection.jpg)
+
+<def> At every point \(p \in P\), the tangent space \(TP_p\) is projected onto the tangent space \(TM_{\pi(p)}\) by pushforward of vectors. We will call the kernel of this map the vertical subspace, \(V_p \subset TP_p\). An <i>Ehresmann connection</i> is the data of a horizontal subspace \(H_p \subset TP_p\) such that \(TP_p = H_p \oplus V_p\) at every point, and the choice is made smoothly and in a gauge invariant manner (this means that \(g H_p = H_{gp}\) for all \(g \in G\)). </def>
+
+With this data, there is a number of observations we can make about the tangent space structure. Recall that the Lie Algebra of a Lie group is defined as the space of left-invariant vector fields, $$g_* X = X$$, equipped with the lie bracket $$[X,Y](f) = X(Y(f)) - Y(X(f))$$. This may also just be identified with the tangent space at the identity. 
+
+<lem>Suppose we have some manifold \(M\) on which \(G\) acts smoothly. This is the same data as a map \(G \to \text{Diff}(M)\) to the lie group of diffeomorphisms on \(M\) - this induces a lie algebra map \(\alpha\) from \(\mathfrak{g}\) to the lie algebra of smooth vector fields \(\text{Vect}(M)\). To write this out explicitly, 
+$$\alpha : X \mapsto \left(f \mapsto \frac{d}{dt} f(e^{tX} x) \bigg|_{t = 0}\right), \quad X \in \mathfrak{g}, x \in M$$
+
+</lem>
+
+<lem>As \(G\) acts on each fiber, the map described above induces an isomorphism \(V_p \simeq \mathfrak{g}\). Furthermore, \(H_p\) becomes isomorphic to \(TM_{\pi(p)}\) by the action of the \(\pi\) map.</lem>
+
+This last observation is what allows us to uniquely define the parallel transport, we will agree to transport elements in the fiber along the horizontal subspaces. 
+
+<thm> Given an Ehresmann connection on a bundle \(\pi : P \to M\), a point \(p \in P\), and a path \(\gamma : [0,1] \to M\) with \(\gamma(0) = \pi(p)\), there is a <i>unique lift</i> \(\pi^* \gamma : [0,1] \to P\) with \(\pi(\pi^* \gamma(t)) = \gamma(t)\) such that \(\frac{d}{dt} \pi^* \gamma(t)\) lives in the horizontal subspace \(H_{\pi^* \gamma(t)}\)</thm>
+
+In the literature however, you will usually see the connection provided as a $$\mathfrak{g}$$-valued one form, so let's first discuss what that means.
+
+## 2. Differential Forms
+
+<def>Suppose we have some manifold \(M\), then a \(V\)-valued \(k\)-form is a section of the tensor bundle \((V \times M) \otimes \wedge^k T^*M\). We denote \(\wedge^{k,l}(M)\) as the space of \(V^{\otimes l}\) -valued \(k\)-forms. On this structure, we can define certain operations:
+$$\begin{align}
+d &: \wedge^{k,l}(M) \to \wedge^{k+1,l}(M) \\
+\wedge &: \wedge^{k_1,l_1}(M) \otimes \wedge^{k_2,l_2}(M) \to \wedge^{k_1+k_2,l_1+l_2}(M) \\
+\end{align}$$
+$$\begin{align}
+d(g_{i_1\dots i_k} dx^{i_1} \wedge \dots \wedge dx^{i_k}) &= \frac{\partial g_{i_1\dots i_k}}{\partial x_j} dx^j \wedge dx^{i-1} \wedge \dots \wedge dx^{i_k} \\
+\phi_1 \wedge \phi_2 (X_1,\dots,X_{k_1+k_2}) &= \sum_{\sigma \in S_{k_1+k_2}} (-1)^{\sigma} \phi_1 (X_{\sigma(1)},\dots,X_{\sigma(k_1)}) \otimes \phi_2 (X_{\sigma(k_1+1)},\dots,X_{\sigma(k_1+k_2)})\\
+\end{align}$$
+</def>
+
+<def>
+In the special case that \(V = \mathfrak{g}\), we can utilise the structure of the commutator on \(\mathfrak{g}\) to define a new type of operation:
+
+$$[\cdot \wedge \cdot] : \wedge^{k_1,1}(M) \otimes \wedge^{k_2,1}(M) \to \wedge^{k_1+k_2,1}(M)$$
+$$[\phi_1 \wedge \phi_2] (X_1,\dots,X_{k_1+k_2}) = \sum_{\sigma \in S_{k_1+k_2}} (-1)^{\sigma} [\phi_1 (X_{\sigma(1)},\dots,X_{\sigma(k_1)}) ,\phi_2 (X_{\sigma(k_1+1)},\dots,X_{\sigma(k_1+k_2)})]$$
+</def>
+
+Note that there are various different notations for the last product, sometimes you see $$[,]$$, or sometimes just $$\wedge$$, so be careful. It should mostly be clear from context however - if you are meant to end up with a $$\mathfrak{g}$$-valued one-form from two others, you have to take the lie bracket. There is a 'complementary' data structure, what we might call a 'gauged-field':
+
+<def>A <i>pseudotensorial form</i> is the data of a representation \(\rho : G \to GL(V)\) of the gauge group, along with a \(V\)-valued \(k\)-form \(\psi\) on \(P\) such that the two natural ways to act on it via gauge transformations agree. That is to say, a gauge transformation \(\Omega : M \to G\) gives an action on \(P\) that you can pull \(\psi\) back from; you can also act via the represenation. A pseudotensorial form is <i>tensorial</i> if it is horizontal in the sense that \(\psi(X_1,\dots,X_k)\) is zero when one of the \(X_i\) is vertical.</def>
+
+Tensorial forms on $$P$$ are special because they can be naturally associated with forms on $$M$$ given a trivialisation of the bundle on some subspace of $$M$$:
+
+<def>Given a smooth section \( \sigma : U \to P, \pi \circ \sigma = \text{Id}_U \), we can identify the bundle \( \pi : \pi^{-1}(U) \to U\) as a trivial bundle, \(\pi^{-1}(U) \simeq G \times U\), via the identification \((g,u) \mapsto g\sigma(u)\). Given a tensorial \(\mathfrak{g}\)-valued \(k\)-form \(\psi\) living on \(\pi^{-1}(U)\), we can pull it back via \(\sigma\) to get a \(\mathfrak{g}\)-valued \(k\)-form \(\sigma^* \psi\) living on \(U\). Conversely, given a \(\psi\) living on \(U\), we can pull it back via \(\pi\) to get a \(\mathfrak{g}\)-valued \(k\)-form living on \(\pi^{-1}(U)\).</def>
+
+The intuition here is that a form on the base space $$M$$, once lifted back to $$P$$, only have horizontal degrees of freedom, as the vertical degrees are projected out by $$\pi$$. On the structure of (pseudo)-tensorial forms, we have various operations available to us:
+
+<def>If we have the data of a connection, we can define:
+$$h : \wedge^{k,(\rho,V)}(P) \to \wedge^{k,(\rho,V)}(P)$$
+whose image consists of strictly <i>tensorial</i> forms. This is defined by using the projection \(h : TP_p \to H_p\) afforded to us by the connection:
+$$h \psi (X_1,\dots,X_k) = \psi(hX_1,\dots,hX_k)$$
+Using \(h\), we can finally define the <i>covariant derivative</i> of a pseudo-tensorial form, \(D\phi = h(d\phi)\). 
+</def>
+
+Note that $$d, \wedge$$ preserve the property of being tensorial. 
+<warn>Projection operators, defined as operators \(P\) such that \(P^2 = P\), are <i>not</i> naturally associated with the subspace that they project onto. Without additional structure, there are many different choices of projection operators that project onto the same subspace. For example, imagine \(\mathbb{R}^2\), if we project onto the \(y\)-axis, we can have an operator with the \(x\)-axis as kernel, and also a different one with the subspace spanned by \((1,1)\) as kernel. </warn>
+
+## 3. The Connection as a Form
+
+Now, let's return to our original goal of describing connections as $$\mathfrak{g}$$-valued $$1$$-forms. 
+
+<lem>Given an Ehresmann connection, we can canonically associate to it a \(\mathfrak{g}\)-valued \(1\)-form \(A\), which is just the 'projection onto \(V_p\)'. To be a little more precise, our one-form \(A\) acts on vectors like the following:
+$$v = v^{(h)} + v^{(v)} \mapsto A(v) \in \mathfrak{g} \mapsto v^{(v)}$$
+where \(v^{(h)}, v^{(v)}\) are the horizontal, vertical components of a vector \(v\), \(A\) maps vectors to elements in \(\mathfrak{g}\), and finally under the isomorphism \(\mathfrak{g} \simeq V_p\) the lie algebra element gets mapped back to \(v^{(v)}\). 
+</lem>
+
+<lem> \(A\) is pseudo-tensorial.
+</lem>
+
+<proof>The proof that I do seem to have is fairly ugly, so forgive me. Denote the original form by \(A\) so that the pulled back form is \(\Omega^* A\), and we want to compare the two at a point \(p\). In local coordinates, \(A = X^i dx^i\)</proof>
+
+Earlier we mentioned that *tensorial* forms can be canonically associated with forms on the base manifold - and this is precisely because the 'vertical'-information of a tensorial form is trivial (the form acting on a set of vectors is zero if one of the vectors is zero) - so there is no loss of information when we look at a form on the base. The same logic applies to the connection 1-form: though it is not tensorial, the vertical information is in some sense also trivial, which allows us to recover it from a form on the base in the following precise sense
+
+<lem>Pick an open subset \(U \subset M\) which trivializes the bundle, so that we have isomorphisms \(\psi_U : \pi^{-1}(U) \to G \times U\). In particular, this means we have a section map \(\sigma_U : U \to (e,U)\) that is the 'identity' section in our trivialising map. We can pull back the connection on \(P\) to a \(\mathfrak{g}\)-valued one-form on \(U\) via this map. This means that vectors in \(U\) are sent to their 'canonically-flat' versions in the trivialised bundle (they all live on \((e,U) \subset G \times U\)), and are then evauated by the 1-form on \(P\). To put it another way, if the 1-form on \(U\) is zero, then the connection is trivial, just given by the trivialising bundle. We can go the other way and start with a 1-form on \(U\) and define the appropriate \(1\)-form on \(P\), since we know the actions that the form has to take on vectors in the vertical subspace (it fixes them), and know the action it takes on vectors in the \((e,U)\) direction, we can work the rest out by linearity. This construction is guarenteed to be gauge invariant. </lem>
+
+Now that we have the connections more or less sorted out, what about curvature forms? 
+
+<def>Supposing we had a point \(p \in P\) and a loop \(\gamma : [0,1] \to M, \gamma(0) = \gamma(1) = \pi(p)\), if we transport \(p\) around the loop we might end up at \(q \neq p\) in the same fiber. We define \(\Phi(u) \subset G\) as the subgroup you get from all closed loops based at a point \(u \in P\), similarly \(\Phi^0(u)\) is the subgroup you get by restricting to loops that are homotopic to zero.</def> 
+
+Note that all the $$\Phi(u)$$ are conjugate subgroups in $$G$$ (since if you have two points $$u$$ and $$v$$, if they can be joined by a horizontal curve then you can `transport' one holonomy group to the other by using the same kind of argument that $$\pi_1(x) \simeq \pi_1(y)$$ for any two points $$x,y$$ - connect the two by a path and conjugate the closed loops. If they can't be connected by a horizontal path you will need some additional group element to shift from one to the other - thats where the conjugation comes in). 
+
+<thm>The key fact is that \(\Phi^0(u)\) forms a connected, normal Lie subgroup of \(G\), and that \(\Phi(u)\) is just \(\Phi^0(u)\) but with a bunch of disjoint components. </thm>
+
+## -1 : Concluding Remarks
+ - It's kind of funny how wordy differential geometry can be. I want to draw pictures, but it's somehow just "geometric feelings in my head". I don't know if the cartoons I write down have any meaning to anyone else. 
+
+
+
+
+
+
