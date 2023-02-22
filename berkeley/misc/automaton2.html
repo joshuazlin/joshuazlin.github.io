@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id = 'myc'></canvas>
+<script>
+var canvas = document.getElementById('myc')
+var context = canvas.getContext('2d')
+var ww = window.innerWidth
+var wh = window.innerHeight
+canvas.width = ww
+canvas.style.width = ww
+canvas.height = wh
+canvas.style.height = wh
+canvas.style.position = 'absolute'
+canvas.style.left = 0
+canvas.style.top = 0
+canvas.style.backgroundColor = 'beige'
+
+var box = 4
+var total = 400
+var n = prompt("Please enter a postive integer", "3");
+console.log(n)
+var boxes = []
+for (var i = 0; i <= total; i++){
+	boxes.push([])
+	for (var j = 0; j <= total; j++){
+		if (i == 0 && j == 0){
+			boxes[0].push(n-1)
+		}
+		else{
+			temp = 0
+			for (var ii = i-1; ii >= 0; ii = ii -1){
+				source = boxes[i-1][j]
+				if (boxes[ii][j]%n == source){
+					temp = temp + 1
+				}
+				else{
+					break
+				}
+			}
+			for (var jj = j-1; jj >= 0; jj = jj -1){
+				source = boxes[i][j-1]
+				if (boxes[i][jj]%n == source){
+					temp = temp + 1
+				}
+				else{
+					break
+				}
+			}
+			boxes[(boxes).length-1].push(temp%n)
+		}
+	}
+}
+
+var colours = []
+for (var i = 0; i < n; i++){
+	colours.push('rgb('+(Math.floor(Math.random()*250)).toString()+','+(Math.floor(Math.random()*250)).toString()+','+(Math.floor(Math.random()*250)).toString()+')')
+}
+
+for (var i = 0; i <= total; i++){
+	for (var j = 0; j <= total; j++){
+		context.fillStyle = colours[boxes[i][j]]
+		context.fillRect(box*i,box*j,box,box);
+	}
+}
+
+
+</script>
+</body>
+</html>

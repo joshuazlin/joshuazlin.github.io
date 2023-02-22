@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="realStyle.css">
+</head>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+</style>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<body>
+    <p style="font-size: 30px">Thinking about Games</p>
+    <!--it's not really random i swear-->
+    <p>Random number: 69</p>
+    <p>1st December 2016</p>
+
+    So it's been over a whole week since I last posted something interesting, and I bet you've all been thinking "Where's that bugger gone to now huh? Can't this lad keep up any commitments?" Turns out 12 pages of essays is kind of hard. That's beside the point however. <br><br>
+
+    I was thinking a bit about games, and what makes a good game good. In particular, I was thinking about games that you could play anywhere with just pen/paper (like tic-tac-toe, except tic-tac-toe isn't a really good game). In these sorts of games that don't involve any sort of luck (i.e. no dice, no drawing cards or anything) and that are guarenteed to terminate, they seem theoretically solveable, I mean you can just draw up a tree of all possible game-states and just do mini-max on it and it's solved. <br><br>
+
+    What makes a game like this fun to play is if there are so many different possibilities that you can choose from that it's infeasible to actually brute force a solution out of it. Like chess. Except you need chess pieces for chess. What I'm looking for is a game like chess that doesn't need any chess pieces and is simple to explain and play. <br><br>
+
+    A potential candidate <i>could be</i> this 'NoCycle' game I came up with.
+
+    <br><br>
+    <div class = 'pb'>
+    <div class = 'pt'>
+
+
+    <ul>
+
+    <li>Draw \(n\) dots on a page. If \(n\) is big, space them out a little bit.</li>
+    <li>There are two players, red and blue, who take turns connecting dots with lines. Red goes first, and draws red lines, Blue goes second, and draws blue lines.</li>
+    <li>Each turn, the player must choose two dots that haven't yet been connected with a line, and connect them.</li>
+    <li>If a player draws an edge that completes a cycle in the graph, then the game is over. If only one cycle was completed, then the player that completed the cycle wins if the number of their color edges in the cycle is strictly less than the number of edges in the cycle contributed by the opponent. Else the player who completed the cycle loses.</li>
+    <li><strike>If a player draws an edge that completes multiple cycles, then treat each cycle as it's own individual 'minigame' (e.g. say Red completes three cycles. By looking at the edges in the first cycle and using the previous rule, we can determine whether or not Red won the first cycle or not. Then continue on for all the other cycles) If there are \(n\) cycles in total, then the player who finishes the game must win <i>strictly greater than</i> \(\frac{n}{2}\) cycles to win the game. Else, the player loses.</strike> OK that was pretty dumb, you can't end on multiple cycles.</li>
+
+    </ul>
+
+    </div>
+    </div>
+
+    <br>
+    If you try playing this game, it becomes clear that at large \(n\) it is very hard to see what is going on. So some additional rules should probably be introduced for human play (e.g. after a player draws an edge, both players can declare that a cycle has been completed. If neither player declares, they both say 'No Cycle', and even if there <i>was</i> a cycle, <strike>the game just continues</strike> then both players lose. It's a lose-lose situation.).<br><br>
+
+
+
+    <canvas id = 'myc'></canvas>
+
+    <script>
+    var canvas = document.getElementById('myc')
+    var context = canvas.getContext('2d')
+    canvas.width = 600
+    canvas.style.width = 600
+    canvas.height = 250
+    canvas.style.height = 250
+    canvas.style.backgroundColor = 'beige'
+
+
+    var ox = 300
+    var oy = canvas.height/2
+    //these are the origin coordinates
+
+    var n = 20
+    //this is how many points to draw
+
+
+    function draw(){
+
+    var vc = []
+    //this is the vertex coordinate array
+
+    for (i = 0; i < n; i++){
+        vc.push([100*Math.cos(2*i*Math.PI/n),100*Math.sin(2*i*Math.PI/n)])
+    }
+    //this initialises the vertex coordinates. Note that they are relative to origin
+
+
+    for (i = 0; i < n; i++){
+    context.beginPath();
+    context.arc(ox + vc[i][0], oy + vc[i][1], 2, 0, 2 * Math.PI, false);
+    context.fillStyle = 'black';
+    context.fill();
+    }
+    //this colors the circles. I can never remember this stuff.
+
+    for (i = 0; i < n; i++){
+        for (j = (i + 1); j < n; j++){
+            context.beginPath();
+            context.moveTo(ox + vc[i][0], oy + vc[i][1]);
+            context.lineTo(ox + vc[j][0], oy + vc[j][1]);
+            context.strokeStyle = 'blue'
+            context.stroke();
+        }
+    }
+
+    }
+
+    draw()
+
+
+    function buttclick(){
+        n = prompt("Please enter how many vertices you'd like.", "20");
+        canvas.width = canvas.width
+        draw()
+    }
+
+    </script>
+
+    <button type = "button" onclick = "buttclick()">Change number of vertices</button>
+
+    <br><br>
+    Huh... Look at those concentric circles you get when you join up \(n\) vertices on the circumference of a circle... nice.<br><br>
+
+    I'll be back with part 2 soon. Got Putnam soon. Will be fun. 
+
+
+
+
+
+
+
+<br><br>
+</body>
+</html>

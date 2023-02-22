@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="realStyle.css">
+</head>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+</style>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<body>
+    <p style="font-size: 30px">P = NP?</p>
+    <!--it's not really random i swear-->
+    <p>Random number: 50</p>
+    <p>4th January 2017</p>
+
+
+    Today I had a read over <a href = "http://www.scottaaronson.com/papers/pnp.pdf">this survey paper for P = NP</a>, and I realised that (a) - I didn't really have a proper understanding of what the problem was about and (b) it's super interesting. So here's my summary of a summary for later perusal.
+    <br><br>
+    A Turing Machine is a machine that accepts as input an intial state written on a one-dimensional tape. The Turing machine has a head which reads the state of the cell  under the head, and based on a finite instruction table the Machine is equipped with, rewrites the cell, moves to another cell, and possibly halts execution. There's a way of formalising this; but it doesn't matter so much, because due to the Church-Turing Thesis, virtually any mode of computation (such as Python) will be equivalent to a Turing Machine.
+    <br><br>
+    A <i>language</i> means a set of binary strings, \(L \subseteq \{0,1\}^*\), where \(\{0,1\}^*\) is the set of all binary strings of finite length. Of course, \(L\) can be finite or infinite. Many (all?) problems are equivalent to determining whether some \(x \in \{0,1\}^*\) is contained in some language \(L\). For instance, the problem of finding out whether or not a number is Prime can be expressed as \(x \in L?\) where \(L\) is the set of all primes written in base 2. A Turing Machine \(M\) can help us answer this problem. We say that \(M(x)\) (the machine run on input \(x\)) <i>accepts</i> if it eventually halts and enters an 'accept' state, and we say that \(M\) decides the language \(L\) if for all \(x \in \{0,1\}^*\):
+
+    $$x \in L \iff M(x) \text{ accepts}$$
+    We say that \(M\) is <i>polynomial-time</i> if there exists some polynomial \(p\) such that \(M(x)\) halts, either accepting or rejecting \(x\), after at most \(p(|x|)\) steps, where \(|x|\) represents the length of the input \(x\). Now \(P\), or Polynomial-Time, is the class of all languages \(L\) for which there exists a Turing Machine \(M\) that decides \(L\) in polynomial time. 
+    <br><br>
+    If it is the case that, given any \(x \in L\), that there exists some polynomial length "witness string" that allows a Turing Machine to evaluate in polynomial time whether \(x \in L\), 
+    $$x \in L \iff \exists w \in \{0,1\}^{p(|x|)}M(x,w) \text{ accepts} $$ 
+    then \(L\) belongs to \(NP\), or Nondeterministic Polynomial Time. Trivially, for all languages \(L \in P\), we also have \(L \in NP\), as the polynomial-time Turing Machine can simply evaluate \(x\) and ignore \(w\) for whatever witness string is given. 
+    <br><br>
+    An example of another \(NP\) language is the '3SAT' language. The language consists of all Boolean formulas (e.g. formulas such as \(p \wedge q\), \(\neg p \vee q \wedge p\)) which consist of "3-clauses" joined by AND's. A "3-clause" is an expression which contains up to \(3\) variables/their negations that are connected by OR's. There must also be at least one assignment (i.e. \(p\) true, \(q\) false) that satisfies the formula. Here's an example that looks like it might belong to '3SAT' as it has the right construction (it's made of "3-clauses"); however doesn't belong because there is <i>no</i> satisfying assignment of \(x,y,z\)
+    $$(x \vee y \vee z) \wedge (\neg x \vee \neg y \vee \neg z) \wedge (x \vee \neg y) \wedge (\neg x \vee y) \wedge (y \vee \neg z) \wedge (\neg y \vee z)$$
+    
+    '3SAT' is \(NP\) because for any \(x \in L\) we can provide a witness string equal to the assignment that satisfies the statement. In essence, \(NP\) problems are characterised by problems where it can be quickly verified that \(x \in L\) by providing a polynomially short witness string \(w\). Another example which might help is HamiltonCycle, the language of all undirected graphs, for which there exists a cycle that visits each vertex exactly once. In this case, for any \(x \in L\), we can provide the witness string \(w\) which describes the cycle. A Turing Machine can quickly check that this cycle \(w\) does exist in \(x\), and determine that \(x \in L\) is true. 
+    <br><br>
+    Now, we proceed! Define an <i>\(L\) - oracle</i> is a wizard that can, at any time, instantaneously decide correctly whether any particular \(x\) belongs to the language \(L\). A Turing Machine \(M^L\) is one that has unlimited access to the \(L\) - oracle; i.e. it can at any time query the wizard and ask whether or not a particular \(x\) belongs to \(L\). We can then define \(P^L\) as the class of languages \(L'\) such that there exists an \(M^L\) that decides \(L'\) in polynomial time. In essence, \(P^L\) represents the languages that become easy if there happens to be an easy solution to \(L\). A language \(L\) is \(NP\)-hard if \(NP \subset P^L\); i.e. if \(L\) can be easily solved, then so can any other \(NP\) problem. A language \(L\) is \(NP\) complete if it is both \(NP\) hard and a member of \(NP\) itself. Informally, \(NP\)-complete problems can be viewed as the 'hardest' \(NP\) problems, because solving one of them quickly would enable the solution of all \(NP\) problems quickly. It turns out that '3SAT' is \(NP\) complete! (By Cook-Levin)
+    <br><br>
+    The idea behind the proof is this. First, construct \(L\):
+    $$L = \{(:M:,x,0^s,0^t) : \exists w \in {0,1}^s \text{ such that } M(x,w) \text{ accepts in } \leq t \text{ steps}\}$$
+    where \(:M:\) is a description of the Turing Maching \(M\). Firstly, \(L\) is clearly \(NP\), as to check whether a quadruple \((:M:,x,0^s,0^t)\) is contained in \(L\), we can provide the witness string \(w\), and we can easily verify if it is true or not (as by definition, if the quadruple is contained it is guarenteed to finish executing in less than \(t\) steps). \(L\) is also \(NP\)-though. Suppose we had another \(NP\) language \(L'\) equipped with a Turing Machine \(M'\) such that for any \(x \in L'\) there exists a polynomial length \(w\) such that \(M'(x,w)\) accepts in polynomial time. If we had an \(L\)-oracle though, we could simply query the oracle with: \((:M:,x,0,0)\),\((:M:,x,00,00)\),\((:M:,x,000,000)\),.... If \(x \in L'\), then there must be a polynomial length \(w\) that exists and works though, so this process should terminate in polynomial time. (Lingering doubt, what if \(x\) not in \(L'\)? The process won't end? But we know that if \(L'\) is NP, then there <i>exists</i> some polynomial, so there exists some way of reducing \(L'\) to \(L\).) We then reduce \(L\), an NP-complete problem, down to a problem of building a circuit to determine what \(M\) does in \(t\) seconds. We then reduce this circuit problem down to '3SAT'.
+
+
+
+<br><br>
+</body>
+</html>

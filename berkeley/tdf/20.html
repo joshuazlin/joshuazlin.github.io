@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="realStyle.css">
+</head>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+</style>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<body>
+    <p style="font-size: 30px">Visit to the legend</p>
+    <!--it's not really random i swear-->
+    <p>Random number: 19</p>
+    <p>23rd February 2017</p>
+
+    After being inspired by the legend's visit at the beginning of semester, I decided I'd pay him a visit last weekend, and some funny things happened. I've seen the proof that \(\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\) a few times before, but every time I keep forgetting the proof, so this time I was determined to find it so it would stick in memory. I did, however, remember the flavour of the 'dodgy' proof, which starts with the assumption that \(\text{sin}(x)\) can be approximated by the product of its roots:
+
+    $$\text{sin}(x) \simeq x (x+\pi)(x-\pi)(x+2\pi)(x-2\pi)...$$
+
+    But wait, that doesn't look quite right.. that clearly doesn't converge! Have no fear; 'renormalisation' is here!
+
+    $$\text{sin}(x) \simeq x (1 - \frac{x}{\pi}) (1 + \frac{x}{\pi})(1 - \frac{x}{2\pi})(1 + \frac{x}{\pi})...$$
+
+    Or in more succinct and suggestive terms:
+
+    $$\frac{\text{sin}(x)}{x} \simeq \prod_{n = 1}^{\infty} (1 - \frac{x^2}{n^2\pi^2})$$
+
+    at least now I could feasibly believe that the infinite product converges, because most of the terms in the product are very close to \(1\). Now apparently it's hard to prove that this equality actually holds (at least some graduate student said that it's not easy to see, something something Weirstrauss) but hey that's fine, let's just roll with the assumption for now that it does hold, and enter the land of dodgy-nonrigorous-math. We can now taylor expand \(\text{sin}(x)\) to get the 'equality':
+
+    $$1 - \frac{x^2}{3!} + \frac{x^4}{5!} - \frac{x^6}{7!} + ... \simeq \prod_{n = 1}^{\infty} (1 - \frac{x^2}{n^2\pi^2})$$
+
+    Happily, the coefficients of \(1\) match up on both sides. Now, reading off the coefficients of \(x^2\) on both sides we get what we came for:
+
+    $$\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$$
+
+    (the coefficient for the product of \(x^2\) can be thought of as choosing 1 for all the terms in the product except for a single \(x^2\) term). We can keep pushing this thing for what its worth though. Reading off the coefficients for \(x^4\) on both sides we get:
+
+    $$\sum_{n = 1}^{\infty} \sum_{m = n+1}^{\infty} \frac{1}{n^2m^2} = \frac{\pi^4}{5!}$$
+
+    ...whatever that means. Of course, we can keep going and going, but these sums look uglier. Instead, let's try a different tactic. Let's start with the 
+
+    $$\text{log}\Big(\frac{\text{sin}(x)}{x}\Big) \simeq \sum_{n = 1}^{\infty} \text{log} \Big(1 - (\frac{x}{n\pi})^2\Big)$$
+
+    Now, notice that for small \(x\) we can apply the taylor series to each of the log terms on the right hand side. If we then group the sums,
+
+    $$\text{log}\Big(\frac{\text{sin}(x)}{x}\Big) \simeq - \sum_{i \geq 1} \sum_{n \geq 1} \frac{x^{2i}}{\pi^{2i}n^{2i}i}$$
+
+    Now the plan is to differentiate both sides by \(x\) a few times, and then substitute in \(x = 0\). Well, there's actually going to be a hole at \(x = 0\), but we can fill it in no worries. If we differentiate both sides twice and substitute in \(x = 0\) we have:
+
+    $$\frac{1}{x^2} - \frac{1}{sin^2(x)} = -\sum_{n \geq 1} \frac{1}{n^2\pi^2}$$
+
+    It is truly a miracle of nature that the left hand side is equal to \(-\frac{1}{3}\) by repeated l'hopitals. It's just wizardly, honestly. Any rational; sane human would guess that it would be 0 or infinity or something. Anyhow, from this we can get our desired sum. We can keep going and harness the power of differentiation, and differentiate four times instead to get:
+
+    $$\sum_{n \geq 1} \frac{1}{n^4} = \frac{\pi^4}{90}$$
+
+    Repeat Ad Nauseum to generate heaps of zeta values. And that's not all! If we simply start with our original equation writing \(\text{sin}(x)/x\) in terms of its roots, and plug in various values, we can get heaps of interesting products too. For instance, with \(x = \pi/2\)
+
+    $$\prod_{n \geq 1} (1 - \frac{1}{4n^2}) = \frac{2}{\pi}$$
+
+    Cool stuff. If only we knew why the original assumption worked. 
+
+
+<br><br>
+</body>
+</html>

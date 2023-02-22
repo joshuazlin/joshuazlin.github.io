@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "realStyle.css" />
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+
+
+<script>
+function yes(x){
+	if (document.getElementById('proof' + x.toString()).style.display == 'none'){
+		document.getElementById('proof' + x.toString()).style.display = 'block'
+	}
+	else{
+		document.getElementById('proof' + x.toString()).style.display = 'none'
+	}
+}
+</script>
+
+<p style="font-size: 30px">Chapter 1: Graphs and Subgraphs</p>
+<!--it's not really random i swear-->
+<p>Random number: 06</p>
+
+
+
+<div class = 'defbox'>
+<div class = 'deftext'>
+A <i>graph</i> \(G\) is an ordered triple \((V(G), E(G), \psi_{G})\) consisting of a nonempty set \(V(G)\) of <i>vertices</i>, a set \(E(G)\), disjoint from \(V(G)\), of <i>edges</i>, and an <i>incidence function</i> \(\psi_{G}\) that associates each edge of \(G\) an undordered pair of (not necessarily distinct) vertices of \(G\). If \(e\) is an edge and \(u,v\) vertices such that \(\psi_{G}(e) = uv\), then \(e\) is said to join \(u\) and \(v\); the vertices \(u,v\) are called the <i>ends</i> of \(e\).
+<br>
+<br>
+Planar graphs are graphs that can be diagramatically represented such that the edges of the graph only intersect at the vertices of the graph are called <i>planar</i>.
+<br><br>
+The ends of an edge are said to be <i>incident</i> with the edge, and vice versa. Two vertices which are incident with a common edge are <i>adjacent</i>, as are two edges which are incident with a common vertex. An edge with identical ends is called a <i>loop</i>, and an edge with distinct ends is a <i>link</i>.
+<br><br>
+A graph is <i>finite</i> if both its vertex set and edge set are finite. We call a graph with just one vertex <i>trivial</i> and all other graphs <i>nontrivial</i>. 
+<br><br>
+A graph is <i>simple</i> if it has no loops and no two of its links join the same pair of vertices.
+<br><br>
+The symbols \(v(G), \epsilon (G)\) refer to the number of vertices, and the number of edges of the graph \(G\). 
+<br><br>
+Two graphs \(G,H\) are said to be <i>identical</i> if \(V(G) = V(H), E(G) = E(H), \psi_G = \psi_H\). \(G,H\) are said to be <i>isomorphic</i> (written \(G\cong H\)) if there are bijections \(\theta : V(G) \rightarrow V(H)\),\( \phi : E(G) \rightarrow E(H) \) such that \(\psi_G(e) = uv\) if and only if \(\psi_H(\phi(e)) = \theta (u)\theta (v)\); such a pair \(\theta,\phi\) is called an <i>isomorphism</i> between \(G\) and \(H\).
+<br><br>
+A <i>complete</i> graph is a simple graph where each pair of distinct vertices is joined by an edge. Up to isomorphism, there is just one complete graph on \(n\) vertices; it is denoted \(K_n\). An <i>empty</i> graph is a graph with no edges. A <i>bipartite</i> graph is one whose vertex set can be partitioned into two subsets \(X\) and \(Y\), so that each edge has one end in \(X\) and one end in \(Y\); such a partition \((X,Y)\) is called a <i>bipartition</i> of the graph. A <i>complete bipartite</i> graph is a simple bipartite graph with bipartition \((X,Y)\) in which each vertex of \(X\) is joined to each vertex of \(Y\); if \(|X| = m\) and \(|Y| = n\), such a graph is denoted by \(K_{m,n}\). 
+<br><br>
+</div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

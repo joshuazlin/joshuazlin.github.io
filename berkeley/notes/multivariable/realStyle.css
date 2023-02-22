@@ -1,0 +1,72 @@
+body {
+    width: 600px;
+    margin:auto;
+}
+img {
+    margin: auto;
+    position: relative;
+    left: 120px;
+}
+.defbox{ 
+    /* This is the box surrounding definitions */
+    border: solid;
+    border-width: 2px;
+}
+.deftext{
+    /* This is the div containing definition text */
+    position: relative;
+    left: 10px;
+    top: 10px;
+    width : 570px;
+}
+li{
+    /* This is the list used to list the questions in the Q and A bit*/
+    margin: 10px 0;
+}
+.sols{
+    /* This is the div that holds the solution (the box around it)*/
+    background-color:beige;
+    border: solid;
+    border-width:1.5px;
+}
+.solstext{
+    /* This is the div that holds the solution text*/
+    position:relative;
+    width : 540px;
+    left : 10px;
+}
+th, td {
+    /* This is just table css*/
+    border: 1px solid black;
+}
+.pb{
+    /* This is the div that holds the proposition box*/
+    background-color:beige;
+    border: solid;
+    border-width:1.5px;    
+}
+.pt{
+    /* This is the div that holds the proposition text*/
+    position:relative;
+    width : 540px;
+    left : 10px;    
+}
+.cb{
+    /* This is the div that holds the corollory box*/
+    background-color:linen;
+    border: solid;
+    border-width:1.5px;    
+}
+.ct{
+    /* This is the div that holds the corollary text*/
+    position:relative;
+    width : 540px;
+    left : 10px;    
+}
+.doHide{
+    background-color:beige;
+    border:none;
+    border-bottom:solid;
+    border-bottom-width:1px;
+    color:blue;
+}

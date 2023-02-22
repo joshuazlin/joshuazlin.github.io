@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="realStyle.css">
+</head>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+</style>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<body>
+    <p style="font-size: 30px">Taylor for Tan</p>
+    <!--it's not really random i swear-->
+    <p>Random number: 68</p>
+    <p>2nd January 2017</p>
+
+    Back from theme parks new years florida train happy! Today, whilst working a math problem, I thought about the taylor series for \(\text{tan}(x)\), more specifically the taylor series around \(x = 0\), otherwise known as the Mclaurin series. By repeatedly taking the derivative of \(\text{tan}(x)\), I figured out that the infinite matrix \(A\) with entries \(a_{i,j}\) defined such that
+    $$a_{i,j} := \begin{cases} 0 \qquad \qquad\qquad\qquad\qquad\qquad\qquad\qquad  \ \ \ \ \text{  if  }\  i = 0,j \neq 1 \\ 1 \ \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad \ \ \ \text{ if } \ i = 0, j = 1 \\ (j-1)*a_{(i-1),(j-1)} + (j+1)*a_{(i-1),(j+1)} \ \text{ if } \ i > 0, j > 0 \\ a_{(i-1),(j+1)} \ \qquad\qquad\qquad\qquad\qquad\qquad \ \ \ \ \ \text{ if } \ i > 0, j = 0 \end{cases}$$
+
+    has the property that 
+
+    $$\text{tan}(x) \approx \sum_{n = 0}^{\infty} a_{n,0}\frac{x^n}{n!}$$
+
+    i.e. is equivalent to the coefficeints for the taylor series of \(\text{tan}(x)\). Roughly, for the first few values we have that:
+
+    $$\text{tan}(x) \approx x + \frac{2x^3}{3!} + \frac{16x^5}{5!} + \frac{272x^7}{7!} + ...$$
+
+    After digging around some more, I found out that these coefficients also go by the name of the 'Tangent Numbers' or 'Zag numbers'. Define \(Z_n\) to be the number of permutations of \(n\) numbers such that the sequence alternates, e.g. that there does not exist numbers \(a,b,c\) in the permutation such that \(a < b < c\) or \(a > b > c\). Now define \(A_n\) to be \(Z_n / 2\). It is curious that
+
+    $$\text{tan}(x) \approx A_1 x + A_3 \frac{x^3}{3!} + A_5 \frac{x^5}{5!} + ... $$ 
+
+    I'll try and figure out the relationship between the number of alternating permutations and the infinite matrix \(A\) later. 
+
+<br><br>
+</body>
+</html>

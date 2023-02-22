@@ -1,0 +1,111 @@
+<html>
+
+<style>
+#myc {
+	position: absolute;
+	top:75;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin-left:auto;
+	margin-right:auto;
+}
+</style>
+
+<h1 align = "center">2D - Ising Model</h1>
+<canvas align = "center" id = "myc"></canvas>
+
+<body>
+<script>
+
+var scale = 150; //How much pixels top to bottom
+var stretch = 1.5; //How much stretched horizonatlly
+var vstretch = 2; //how much stretched visually
+
+var canvas = document.getElementById("myc");
+canvas.style.backgroundColor = "grey";
+canvas.style.width = scale*vstretch*stretch;
+canvas.style.height = scale*vstretch;
+canvas.width = scale*stretch;
+canvas.height = scale;
+ctx = canvas.getContext("2d");
+
+var spins = [] //A two dimensional array, mind you~!
+
+for (i = 0; i < scale*stretch; i++){
+	spins.push([]);
+	for (j = 0; j < scale; j++){
+		ctx.beginPath();
+		if (Math.random() < 0.5){
+			spins[spins.length-1].push(-1);
+			ctx.fillStyle="black";
+		}
+		else{
+			spins[spins.length-1].push(1);
+			ctx.fillStyle="white";
+		}
+		ctx.rect(i,j,1,1);
+		ctx.fill();
+	}
+}
+
+var A = 0.01 //our rate of change; our activity coefficient
+var J = 0.1 //our Interaction energy
+var eiu = 0 //our energy at a point if it were up; up = 1 white, down = 0 black
+var eid = 0 //our energy at a point if it were down
+var beta = 10 //our temperature
+var nbrs = [[0,0],[0,0],[0,0],[0,0]] //our neighbors
+
+function mod(n, m) {
+	return ((n % m) + m) % m;
+}
+
+
+
+function passOver(){
+
+	for (i = 0; i < scale*stretch; i++){
+		for (j = 0; j < scale; j++){
+			nbrs[0][0] = mod((i-1),scale*stretch);
+			nbrs[0][1] = j;
+			nbrs[1][0] = i;
+			nbrs[1][1] = mod((j+1),scale);
+			nbrs[2][0] = mod((i+1),scale*stretch);
+			nbrs[2][1] = j;
+			nbrs[3][0] = i;
+			nbrs[3][1] = mod((j-1),scale);
+
+			eiu = -(J/2)*(1*spins[nbrs[0][0]][nbrs[0][1]] +1*spins[nbrs[1][0]][nbrs[1][1]] +1*spins[nbrs[2][0]][nbrs[2][1]]+1*spins[nbrs[3][0]][nbrs[3][1]]);
+			//console.log(eiu)
+			//eid = -(J/2)*(-1*spins[nbrs[0][0]][nbrs[0][1]] -1*spins[nbrs[1][0]][nbrs[1][1]] -1*spins[nbrs[2][0]][nbrs[2][1]]-1*spins[nbrs[3][0]][nbrs[3][1]]);
+			eid = -eiu;
+			if (Math.random() < A){
+				//console.log(eiu);
+				//console.log(eid);
+				//console.log(Math.e**(-beta*eiu)/(Math.e**(-beta*eiu) + Math.e**(-beta*eid)));
+				if (Math.random() < (Math.E**(-beta*eiu))/((Math.E**(-beta*eiu)) + (Math.E**(-beta*eid)))){
+					spins[i][j] = 1;
+					ctx.beginPath();
+					ctx.fillStyle = "white";
+					ctx.rect(i,j,1,1);
+					ctx.fill();
+				}
+				else{
+					spins[i][j] = -1;
+					ctx.beginPath();
+					ctx.fillStyle = "black";
+					ctx.rect(i,j,1,1);
+					ctx.fill();
+				}
+			}
+		}
+	}
+}
+
+setInterval(passOver, 100);
+//setTimeout(passOver, 100);
+
+console.log("yo");
+
+	</script>
+</body>

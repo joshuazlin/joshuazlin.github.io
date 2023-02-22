@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "realStyle.css" />
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+<script>
+function yes(x){
+    if (document.getElementById('proof' + x.toString()).style.display == 'none'){
+        document.getElementById('proof' + x.toString()).style.display = 'block'
+    }
+    else{
+        document.getElementById('proof' + x.toString()).style.display = 'none'
+    }
+}
+</script>
+
+
+
+
+<p style="font-size: 30px">Questions I have about the Universe</p>
+<!--it's not really random i swear-->
+<p>Random number: 95</p>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Chaos</b> <!--<button class = 'doHide' onclick= 'yes(1)'>Proof</button>-->
+<br>
+Define formally what we mean by chaos; e.g. what exactly do we mean when we say that the double pendulum is chaotic as opposed to the single pendulum? I'm almost certain that there should be many different equivalent ways of characterising the 'chaotic' condition.
+</div>
+</div>
+
+<br>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Quantum Trading Information</b>
+<br>
+Is it possible to come up with an algorithm that utilises qubits (and probably entanglement?) such that Alice and Bob can 'trade' information under the following parameters:
+<ul>
+<li>
+At the moment that Alice becomes able to retrieve Bob's information, Bob must be able to retrieve Alice's information (and vice versa). In other words; one party can't 'back out' of the deal; and just steal the other party's information.
+</li>
+<li>
+The protocol is secure; in the sense that any eveasdropper listening in cannot recover anything about either Alice's information or Bob's information.
+</li>
+Classically, this is impossible. In the Quantum world; we have entanglement on our side, so maybe it's possible; though I'm hedging my bet that it's actually impossible. A good start maybe would be to get Alice and Bob to share a secret key (with BB84 or the like)? Or maybe utilise quantum teleportation somehow. 
+</ul>
+</div>
+</div>
+
+<br>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Measure of an Interesting Set (202A Final - Prof. Hammond)</b>
+<br>
+Consider a number such that in its decimal representation:
+$$0.a_1a_2a_3a_4...$$
+there are infinitely many \(N\) such that the set
+$$\{a_i | 1 \leq i \leq 10N\}$$
+contains an equal number of \(0\)'s, \(1\)'s, ..., \(9\)'s. What is the measure of the collection of all such numbers in \([0,1]\).
+</div>
+</div>
+
+<br>
+
+
+<!--
+<div id = 'proof1' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+</li>
+</ul>
+</div>
+<br>
+
+
+<div class = "defbox">
+<div class = 'deftext'>
+If \(a_1,a_2,a_3,...\) are real numbers, the series \(\sum_{n = 1}^{\infty} a_n\) is said to be <i>absolutely convergent</i>, or <i>convergent absolutely</i>, if the series \(\sum_{n = 1}^{\infty} |a_n|\) is convergent.
+<br><br>
+</div>
+</div>
+<br>
+-->
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id = 'myc'></canvas>
+<script>
+var canvas = document.getElementById('myc')
+var context = canvas.getContext('2d')
+var ww = window.innerWidth
+var wh = window.innerHeight
+canvas.width = ww
+canvas.style.width = ww
+canvas.height = wh
+canvas.style.height = wh
+canvas.style.position = 'absolute'
+canvas.style.left = 0
+canvas.style.top = 0
+canvas.style.backgroundColor = 'beige'
+
+var box = 4
+var total = 400
+var boxes = []
+for (var i = 0; i <= total; i++){
+	boxes.push([])
+	for (var j = 0; j <= total; j++){
+		if (i == 0 && j == 0){
+			boxes[0].push(1)
+		}
+		else{
+			temp = 0
+			for (var ii = i-1; ii >= 0; ii = ii -1){
+				source = boxes[i-1][j]%2
+				if (boxes[ii][j]%2 == source){
+					temp = temp + 1
+				}
+				else{
+					break
+				}
+			}
+			for (var jj = j-1; jj >= 0; jj = jj -1){
+				source = boxes[i][j-1]%2
+				if (boxes[i][jj]%2 == source){
+					temp = temp + 1
+				}
+				else{
+					break
+				}
+			}
+			boxes[(boxes).length-1].push(temp%2)
+		}
+	}
+}
+
+
+for (var i = 0; i <= total; i++){
+	for (var j = 0; j <= total; j++){
+		boxes[i][j] = boxes[i][j]%2
+		if (boxes[i][j] == 1){
+			context.fillStyle = 'black'
+			context.fillRect(box*i,box*j,box,box);
+		}
+		else{
+			context.fillStyle = 'grey'
+			context.fillRect(box*i,box*j,box,box);			
+		}
+	}
+}
+
+
+</script>
+</body>
+</html>

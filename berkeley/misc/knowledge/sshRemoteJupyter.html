@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+</style>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<body>
+    <p style="font-size: 30px">Remote Jupyter Server (ssh)</p>
+    <!--it's not really random i swear-->
+    <p>Random number: 57</p>
+    <p style="margin-left: 40px"> 
+    <pre><code class="bash">
+    #On the ssh server
+    #Make sure you check which pdsf server you are on
+    jupyter notebook --no-browser --port=[XXXX]
+    </code></pre>
+    </p>
+
+    <p style="margin-left: 40px"> 
+    <pre><code class="bash">
+    #On local machine; access the notebook with localhost:[YYYY] on local machine
+    ssh -f [USER]@[SERVER] -L [YYYY]:localhost:[XXXX] -N
+    </code></pre>
+    </p>
+
+    <p style="margin-left: 40px"> 
+    <pre><code class="bash">
+    #In case it hangs, to print you PID of process bound on that port.
+    fuser [XXXX]/tcp
+    #And if you want to straight up kill it
+    fuser -k [XXXX]/tcp
+    </code></pre>
+    </p>
+
+    <p style="margin-left: 40px"> 
+    <pre><code class="bash">
+    #TO check GPUs
+    nvidia-smi
+    </code></pre>
+    </p>
+
+
+
+</body>
+</html>

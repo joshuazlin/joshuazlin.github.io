@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "realStyle.css" />
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+
+<p style="font-size: 30px">Chapter 2: Problems and Solutions</p>
+<!--it's not really random i swear-->
+<p>Random number: 23</p>
+
+<ol type = "1">
+
+
+<li value = '12'>
+Let \(X\) and \(Y\) be nonempty subsets of \(\mathbb{R}\) whose union is \(\mathbb{R}\) and such that each element of \(X\) is less than each element of \(Y\). Prove that there exists \(a \in \mathbb{R}\) such that \(X\) is one of the two sets
+$$\{ x \in \mathbb{R} : x \leq a \} \text{ or } \{x \in \mathbb{R} : x < a\}$$
+
+<div class = 'sols'>
+<div class = 'solstext'>
+
+<br>This proof skids over a few minor details, but that's OK, if I did everything from the axioms then it'd literally take forever. 
+<br><br>
+Because \(Y\) is nonempty, then \(\exists y_0 \in Y\) such that \(\forall x \in X: x < y_0\) by the definition of \(X\) and \(Y\). Hence, \(y_0\) is an upper bound of \(X\), and by the completeness axiom \(X\) must have a least upper bound, call it \(a\). 
+<br><br>
+Suppose \(d \in \mathbb{R}\) with \(d < a\). Then
+$$d \in \mathbb{R}$$
+$$d \in X \cup Y$$
+$$d \in X \text{ or } d \in Y$$
+<br>
+Suppose that \(d \in Y\). Define \(\delta = \frac{a-d}{2}\). 
+<br><br>
+Claim: \(\exists x \in X : a - \delta \leq x \leq a\).
+<br>
+Suppose instead that no such \(x\) exists. That would mean that \(a - \delta\) is an upper bound of \(X\)! But \(a\) is supposed to be the least upper bound, meaning that it should be smaller than all upper bounds of \(X\)! This is a contradiction, hence the claim is true and such an \(x\) must exist.
+<br><br>
+Because \(d \in Y\) and \(x \in X\), then by definition of \(X\) and \(Y\) then \(d > x\).
+<br><br>
+BUT, we also have that: 
+$$x \geq a - \delta \geq a - \frac{a-d}{2} \geq \frac{a}{2} + \frac{d}{2}$$
+$$a > d$$
+$$x > \frac{d}{2} +\frac{d}{2}$$
+$$x > d$$
+<br>
+But by order axiom, \(x > d\) and \(d > x\) cannot be true at the same time, hence there is a contradiction!
+<br><br>
+Hence our earlier assumption that \(d \in Y\) must be false, and \(d \in X\) must be true. 
+<br>
+Hence \(\forall d < a: d \in X\)
+<br>
+Hence \(X\) is either \(\{x \in \mathbb{R} : x \leq a\} \text{ or } \{x \in \mathbb{R} : x < a\} \qquad \Box\)
+<br><br>
+</div>
+</div>
+
+</li>
+<li value = '13'>
+If \(S_1,S_2\) are nonempty subsets of \mathbb{R} that are bounded from above, prove that 
+$$\text{l.u.b.} \{x + y : x \in S_1, y \in S_2\} = \text{l.u.b. } S_1 + \text{l.u.b. } S_2$$
+<br>
+<div class = 'sols'>
+<div class = 'solstext'>
+<br>
+First, let's define \(\text{l.u.b.} \{x + y : x \in S_1, y \in S_2\}\) as \(c\), \(\text{l.u.b. } S_1\) as \(a\) and \(\text{l.u.b. } S_2\) as \(b\). Now, assume the contrary, that is that \(c \neq (a + b)\). Then by the order axiom is must either be the case that \(c > (a + b)\) or that \(c < (a + b)\).
+<br><br>
+In the first case, let \(x \in S_1, y \in S_2\). Then we have that \(x \leq a, y \leq b\) because \(a,b\) are the least upper bounds of their respective sets. We can then infer that \((x + y) \leq (a + b)\), hence we know that \((a+b)\) must be an upper bound of the set \(\{x + y : x \in S_1, y \in S_2\}\). Because \(c\) is the least upper bound, it is not possible that \(c > (a + b)\). Hence we have a contradiction.
+<br><br>
+In the second case, suppose that we have
+$$\alpha = a - \frac{a+b-c}{4}, \beta = b - \frac{a+b-c}{4}$$
+We are now guarenteed that \(\exists x \in S_1 : x \geq \alpha\) and \(\exists y \in S_2 : y \geq \beta\) due to the fact that \(a,b\) are the <i>least</i> upper bounds (by an argument we used in Q12). Hence we have that:
+$$x + y \geq \alpha + \beta \geq a + b - \frac{a+b-c}{2} \geq \frac{a+b}{2} + \frac{c}{2}$$
+$$a + b > c \text{ by assumption}$$
+$$x + y > c$$
+However this is also a contradiction. Therefore both contrapositive cases lead to contradictions, so we may conclude that 
+$$\text{l.u.b.} \{x + y : x \in S_1, y \in S_2\} = \text{l.u.b. } S_1 + \text{l.u.b. } S_2 \qquad \Box$$
+</div>
+</div>
+</li>
+
+</ol>
+
+</body>
+</html>

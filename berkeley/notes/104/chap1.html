@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+.defbox{ 
+    /* This is the box surrounding definitions */
+    border: solid;
+    border-width: 2px;
+}
+.deftext{
+    /* This is the div containing definition text */
+    position: relative;
+    width : 570px;
+}
+li{
+    margin: 10px 0;
+}
+</style>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+
+
+
+<p style="font-size: 30px">Chapter 1: Notions from Set Theory</p>
+<!--it's not really random i swear-->
+<p>Random number: 56</p>
+
+<div class = "defbox">
+<div class = 'deftext'>
+
+    <ul>
+
+    <li>
+    A set is a <i>collection</i> of objects. Sets can be denoted in two different ways, 
+    for example the set \(S\) containing two numbers \(1\) and \(-1\) can be denoted by 
+    $$S = \{ -1,1\} = \{ x : x^2 = 1 \text{ and } x \in \mathbb{R}\}$$ which reads like
+    \(S\) is the set containing \(1\) and \(-1\), and \(S\) is the set containing \(x\) where \(x^2\) is equal 
+    to \(1\) and \(x\) is a real number.
+    </li>
+
+    <li>
+    If every element of a set \(X\) is contained within a set \(Y\), then we say that \(X\) is a <i>subset</i> of \(Y\), and we denote this by \(X \subset Y\).
+    </li>
+
+    <li>
+    The empty set, denoted by \(\emptyset\), denotes the set containing no objects. 
+    </li>
+
+    <li>
+    The intersection of \(X\) and \(Y\), denoted by \(X \cap Y\), is the set containing all objects that are in both \(X\) and \(Y\). In other words: $$X \cap Y = \{ x : x \in X \text{ and } x \in Y \}$$ The intersection of multiple sets is usually denoted in the following way: $$ \bigcap_{i \in I} X_i = \{x : \text{ for each } i \in I, x \in X_i\} $$
+    </li>
+
+    <li>
+    The union of \(X\) and \(Y\), denoted by \(X \cup Y\), is the set containing all objects that are in either \(X\) or \(Y\). In other words: $$X \cup Y = \{x : x \in X \text{ or } x \in Y\}$$ The union of multiple sets is usually denoted in the following way: $$ \bigcup_{i \in I} X_i = \{x : x \in X_i \text{ for some } i \in I\}$$
+    </li>
+
+    <li>
+    If \(X \subset S\), then the <i>complement</i> of \(X\) in \(S\) is the set of all elements of \(S\) which are not elements of \(X\). In other words:
+    $$X^\complement = \{ x \in S : x \notin X\}$$
+    </li>
+
+    <li>
+    Two sets are said to be <i>disjoint</i> if they have no element in common. Similarly, a collection of sets is said to be disjoint if no two sets have an element in common. 
+    </li>
+
+    <li>
+    An <i>ordered pair</i> \((a,b)\) is an object in which the order of \(a\) and \(b\) matter. 
+    </li>
+
+    <li>
+    Given two sets \(X\) and \(Y\), we define the <i>cartesian product</i> of \(X\) and \(Y\), denoted by \(X \times Y\) to be $$X \times Y = \{(x,y) : x \in X, y \in Y\}$$
+    </li>
+
+    <li>
+    If \(X\) and \(Y\) are sets, a <i>function</i> from \(X\) to \(Y\) is a rule that associates with each element of \(X\) a definite element of \(Y\). The statement "\(f \text{ is a function from } X \text{ to } Y\)" is often written \(f : X \rightarrow Y\)
+    </li>
+
+    <li>
+    If \(f : X \rightarrow Y\) and \(g : Y \rightarrow Z\), then we can define the <i>composite function</i> as $$ (g \circ f)(x) = g(f(x))$$
+    </li>
+
+    <li>
+    A function \(f: X \rightarrow Y\) is called <i>one-to-one</i> if \(f(x_1) = f(x_2)\) only if \(x_1 = x_2\). This is also called being <i>injective.</i>
+    </li>
+
+    <li>
+    A function \(f: X \rightarrow Y\) is called <i>onto</i> if each element of \(Y\) corresponds to some value of \(X\) under \(f\), or in other words if for every \(y \in Y\), there exists some \(x \in X\) such that \(f(x) = y\). This is also called being <i>surjective</i>.
+    </li>
+
+    <li>
+    A function that is both one-one and onto is called <i>one-one onto</i>, or <i>bijective</i>.
+    </li>
+
+    <li>
+    A bijective function \(f\) has a corresponding inverse function \(f^{-1}\), such that \(f^{-1}(y) = x\) if and only if \(f(x) = y\).
+    </li>
+
+    <li>
+    If \(f:X \rightarrow Y\) a funtion with \(X' \subset X\), then the subset of \(Y\) given by $$f(X') = \{f(x) : x \in X\}$$ is called the <i>image</i> of \(X'\). Similarly, if \(Y' \subset Y\), then the subset of \(X\) given by $$f^{-1}(Y') = \{x \in X: f(x) \in Y'\}$$ is called the <i>inverse image</i> of \(Y'\). In layman terms, the image of a set is what that set maps to, the inverse image of a set is everything that maps to that set.  
+    </li>
+
+
+    </ul>
+
+    
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

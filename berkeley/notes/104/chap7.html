@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "realStyle.css" />
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+<script>
+function yes(x){
+    if (document.getElementById('proof' + x.toString()).style.display == 'none'){
+        document.getElementById('proof' + x.toString()).style.display = 'block'
+    }
+    else{
+        document.getElementById('proof' + x.toString()).style.display = 'none'
+    }
+}
+</script>
+
+
+
+
+<p style="font-size: 30px">Chapter 7: Interchange of Limit Operations</p>
+<!--it's not really random i swear-->
+<p>Random number: 34</p>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Integration and Differentiation of Sequences of Functions</b> <button class = 'doHide' onclick= 'yes(1)'>Proof</button>
+<br>
+<ul>
+<li>
+Let \(a,b \in \mathbb{R}, a < b, \) and let \(f_1,f_2,f_3,...\) be a uniformly convergent sequence of continuous real-valued functions on \([a,b]\). Then
+$$\int_a^b (\lim_{n \to \infty} f_n(x))dx = \lim_{n \to \infty} \int_a^b f_n(x) dx$$
+</li>
+<li>
+Let \(f_1,f_2,f_3,...\) be a sequence of real-valued functions on an open interval \(U\) in \(\mathbb{R}\), each having a continuous derivative. Suppose that the sequence \(f_1', f_2', f_3', ...\) converges uniformly on \(U\) and that for some \(a \in U\) the sequence \(f_1(a), f_2(a), f_3(a),...\) converges. Then \(\lim_{n \to \infty}f_n\) exists, is differentiable, and 
+$$(lim_{n \to \infty} f_n)' = \lim_{n \to \infty} f_n'$$
+</li>
+</ul>
+</div>
+</div>
+
+<div id = 'proof1' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+Let \(f = \lim_{n \to \infty} f_n\). Since each \(f_n\) is continuous and the convergence is uniform, we have that \(f\) is continuous, implying that it is Riemann Integrable. By the definition of uniform convergence, for any \(\epsilon > 0\) there exists a positive integer \(N\) such that \(n >N\) implies \(|f(x) - f_n(x)| < \epsilon/(b-a)\) for all \(x \in [a,b]\). We then have:
+$$-\frac{\epsilon}{b-a} \leq f(x) - f_n(x) \leq \frac{\episilon}{b-a}$$
+$$-\epsilon \leq \int_a^b (f(x) - f_n(x))dx \leq \epsilon$$
+$$|\int_a^b f(x) dx - \int_a^b f_n(x) dx| \leq \epsilon$$
+This last inequality holds for all \(n > N\), hence we have:
+$$\lim_{n \to \infty}\int_a^b f_n(x)dx = \int_a^b f(x) dx$$
+proving the theorem. It turns out that a slightly stronger statement exists; namely that the functions \(f_n\) must merely be Riemann Integrable instead of continuous (though you still need them to converge uniformly). 
+</li>
+<li>
+By the fundamental theorem of calculus we have
+$$\int_a^x f_n'(t) dt = f_n(x) - f_n(a)$$
+for all \(x \in U\) and for any \(n\). Let \(\lim_{n \to \infty}f_n' = g\). By the previous theorem we have that:
+$$\int_a^x g(t) dt = \int_a^x \lim_{n \to \infty} f_n'(t) dt = \lim_{n \to \infty} \int_a^x f_n'(t) dt = \lim_{n \to \infty} (f_n(x) - f_n(a))$$
+Since \(\lim_{n \to \infty} f_n(a)\) exists, we must have that \(\lim_{n \to \infty} f_n(x)\) exists. Setting \(\lim_{n \to \infty}f_n(x) = f(x)\) we have that
+
+$$f(x) - f(a) = \int_a^xg(t)dt$$
+
+And by the fundamental theorem of calculus, \(f' = g\), which is what we set out to prove. 
+</li>
+</ul>
+</div>
+<br>
+
+
+<div class = "defbox">
+<div class = 'deftext'>
+If \(a_1,a_2,a_3,...\) are real numbers, the series \(\sum_{n = 1}^{\infty} a_n\) is said to be <i>absolutely convergent</i>, or <i>convergent absolutely</i>, if the series \(\sum_{n = 1}^{\infty} |a_n|\) is convergent.
+<br><br>
+</div>
+</div>
+<br>
+
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Infinite Series</b> <button class = 'doHide' onclick= 'yes(2)'>Proof</button>
+<br>
+<ul>
+<li>
+The series of real numbers \(a_1 + a_2 + a_3 +...\) converges if and only if, given any \(\epsilon > 0\), there is a positive integer \(N\) such that if \(n > m \geq N\) then
+$$|a_{m+1} + a_{m+2} + ... + a_n| < \epsilon$$
+</li>
+<li>
+The following rules hold:<br>
+1) If \(\sum_{n = 0}^\infty a_n\) and \(\sum_{n = 0}^\infty b_n\) are convergent series of real numbers, then the series \(\sum_{n = 0}^\infty (a_n + b_n)\) is also convergent and
+$$\sum_{n = 0}^\infty (a_n + b_n) = \sum_{n = 0}^\infty a_n + \sum_{n = 0}^\infty b_n $$
+2) If \(\sum_{n = 0}^\infty a_n\) is a convergent series of real numbers and \(c \in \mathbb{R}\), then \(\sum_{n = 0}^\infty ca_n\) is convergent and 
+$$\sum_{n = 0}^\infty ca_n = c\sum_{n = 0}^\infty a_n$$
+</li>
+<li>
+If \(\sum_{n = 0}^\infty a_n\) and \(\sum_{n = 0}^\infty b_n\) are infinite series of real numbers such that \(|a_n| \leq b_n\) for \(n = 1,2,3...\) and \(\sum_{n = 0}^\infty b_n\) converges, then \(\sum_{n = 0}^\infty a_n\) converges. 
+</li>
+<li>
+If \(\sum_{n = 0}^\infty a_n\) is an infinite series of nonzero real numbers and if there exists a number \(\rho < 1\) such that \(|a_{n+1}/a_n| \leq \rho\) for all sufficiently large \(n\), then the series converges absolutely. If \(|a_{n+1}/a_n| \geq 1\) for all sufficiently large \(n\), the series diverges. 
+</li>
+<li>
+Let \(a_1, a_2, a_3, ...\) be a decreasing sequence of positive numbers converging to zero. Then the series:
+$$a_1 - a_2 + a_3 - a_4 ... $$
+converges to some positive number less than \(a_1\)
+</li>
+<li>
+Let \(f : \mathbb{N} \to \mathbb{N}\) be a bijective function. Then if \(\sum_{n = 1}^\infty a_n\) is an absolutely convergent series of real numbers, the series \(\sum_{n = 0}^\infty a_{f(n)}\) is also absolutely convergent and:
+$$\sum_{n = 0}^\infty a_{f(n)} = \sum_{n = 0}^\infty a_n$$
+</li>
+<li>
+Let \(\sum_{n = 1}^\infty a_n\) be an absolutely convergent series of real numbers and let \(S_1, S_2, S_3, ...\) be a sequence (finite or infinite) of disjoint nonempty sets of natural numbers whose union \(S_1 \cup S_2 \cup S_3 \cup ...\) is the entire set of natural numbers \(\{1,2,3,...\}\). Then for each \(i\) such that \(S_i\) is infinite the series \(\sum_{n \in S_i} a_n\) is absolutely convergent, if the number of sets \(S_1, S_2, S_3, ...\) is infinite then the series \(\sum_{i = 1}^\infty (\sum_{n \in S_i} a_n)\) is absolutely convergent, and in any case:
+$$\sum_{i = 1, 2, 3,...} (\sum_{n \in S_i} a_n) = \sum_{n = 1}^\infty a_n$$
+
+</li>
+<li>
+If \(a,b \in \mathbb{R}, a < b, \) and \(\sum_{n = 1}^\infty f_n\) is a uniformly convergent series of continuous real-valued functions on \([a,b]\) then
+$$\int_a^b (\sum_{n = 1}^\infty f_n)(x) dx = \sum_{n = 1}^\infty \int_a^b f_n(x) dx$$
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id = 'proof2' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+This follows directly from the fact that if it converges, it must be a Cauchy Sequence.
+</li>
+<li>
+These laws follow directly from the limit laws.
+</li>
+<li>
+By the fact that the sequence of Partial Sums must be Cauchy, we have that:
+$$|b_{m+1} + b_{m+2} + ... + b_n| < \epsilon$$
+$$|a_{m+1} + a_{m+2} + ... + a_n| \leq |a_{m+1}| + |a_{m+2}| + ... + |a_n|$$
+$$\leq b_{m+1} + b_{m+2} + ... + b_n < \epsilon$$
+Hence the smaller sequence must also be Cauchy, and convergent.
+</li>
+<li>
+To prove convergence of a sequence that gets at least geometrically smaller, we can compare it to the geometric progression (powers of \(\rho\)), and note that all the terms are smaller, hence the series converges. If \(\rho = 1\), then we have that the summands don't even limit to 0, so the partial sums cannot converge.
+</li>
+<li>
+Each partial sum can be written in two ways:
+$$(a_1 - a_2) + (a_3 - a_4) + ... + (a_{n-1} - a_n)$$
+$$a_1 - (a_2 - a_3) - (a_4 - a_5) - ... - (a_{n-1} - a_n)$$
+(where there may be an extra term at the end, no big deal though). The first way shows that the partial sums are bounded below by 0, as each term is positive, and the second sum shows the partial sums are bounded above by \(a_1\), as each of the terms is positive. We also know however that:
+$$0 \leq |a_{m+1} - a_{m+2} + a_{m+3} - ... \pm a_n| \leq a_{m+1}$$
+by the same logic (because if you cut off the first \(m\) terms of the alternating sequence, you end up with another alternating sequence). But since \(\lim_{n \to \infty} a_n = 0\), we have that the sequence of partial sums is Cauchy, and hence convergent to some real number in \((0,a_1)\). 
+</li>
+<li>
+For any positive \(n\), the numbers \(f(1),f(2),...f(n)\) are a subset of \(1,2,...N\) for some \(N\). Thus any partial sum of the series \(\sum_{n = 1}^\infty |a_{f(n)}|\) is less than or equal to a partial sum of the series \(\sum_{n = 1}^\infty |a_n|\). Since the latter series converges its partial sums are bounded, hence also the partial sums of the series \(\sum_{n = 1}^\infty |a_{f(n)}|\) are bounded. Hence the series \(\sum_{n = 1}^\infty a_{f(n)}\) is absolutely convergent.<br><br>
+Now, for any \(\epsilon > 0\) choose a positive integer \(N\) such that whenver \(n > m \geq N\) we have \(|a_{m+1}| + |a_{m+2}| + ... + |a_n| < \epsilon\). Then choose \(N'\) such that all the numbers \(1,2,...,N\) are included among \(f(1),f(2),...,f(N')\). If \(n > N'\) we have
+$$\sum_{i = 1}^n (a_{f(i)} - a_i) = \sum_{i \in S_1} a_i - \sum_{j \in S_2} a_j$$
+where \(S_1\) is the set of numbers \(f(1),f(2),...f(n)\) which do not occur among \(1,2,...n\), and \(S_2\) is the set of integers \(1,2,...n\) that do not occur among \(f(1),f(2),...f(n)\). Clearly the two sets are disjoint, and neither includes any number in \(1,2,...N\). Hence we have
+$$|\sum_{i = 1}^n (a_{f(i)} - a_i)| \leq \sum_{i \in S_i \cup S_2} |a_i| \leq |a_{N+1}| + |a_{N+2}| + ... + |a_M| < \epsilon$$
+This proves that $$\lim_{n \to \infty} |\sum_{i = 1}^n (a_{f(i)} - a_i)| = 0$$, hence proving our proposition.
+</li>
+<li>
+We use a similar argument here for the rearrangement theorem; namely that if we have an infinite subset \(S\) of \(\{1,2,3,...\}\) ordered in any fashion, each partial sum of the series \(\sum_{n \in S} |a_n|\) is less than or equal to some partial sum of the series \(\sum_{n = 1}^\infty |a_n|\). The latter's partials are bounded, so the former's are bounded too, and hence absolutely convergent.<br><br>
+If there are finitely many \(S\), then the proof from here on is trivial. So assume that there are infinitely many \(S\). For any \(\epsilon > 0\) choose a positive integer \(N\) such that if \(n > m \geq N\) then \(|a_{m+1}| + |a_{m+2}| + ... + |a_n| < \epsilon\) and then choose \(N'\) such that \(\{1,2,...,N\} \subset S_1 \cup S_2 \cup ... \cup S_{N'}\). If now \(v > N'\) then the absolute value of any partial sum of the infinite series \(\sum_{n \in S_{v+1} \cup S_{v + 2} \cup ...} a_n\) is at most \(\sum_{n \in S'}|a_n|\), where \(S'\) is some finite subset of \(\{N+1, N+2, N+3, ...\}\) hence it is at most \(|a_{N+1}|+|a_{N+2}| + ... |a_M|\) for some \(M > N\), hence it is less than \(\epsilon\). Thus the above limit is indeed zero and \(\sum_{i = 1}^\infty (\sum_{n \in S_i} a_n)\) indeed converges to \(\sum_{n = 1}^\infty a_n\). Applying this to the absolutely convergent series \(\sum_{n = 1}^\infty |a_n|\), we see that \(\sum_{i = 1}^\infty (\sum_{n \in S_i} |a_n|)\) is convergent. Since \(|\sum_{n \in S_i} a_n| \leq \sum_{n \in S_i} |a_n|\) for all \(i = 1,2,3...\), the comparison test shows that \(\sum_{i = 1}^\infty (\sum_{n \in S_i} a_n)\) is absolutely convergent. This completes the proof. 
+</li>
+<li>
+This follows from the interchange of limit operations.
+</li>
+</ul>
+</div>
+<br>
+
+
+
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Power Series</b> <button class = 'doHide' onclick= 'yes(3)'>Proof</button>
+<br>
+<ul>
+<li>
+For a given power series \(\sum_{n = 0}^\infty c_n (x - a)^n\) one of the following is true:<br>
+1) The series converges absolutely for all \(x \in \mathbb{R}\)<br>
+2) There exists a real number \(r > 0\) such that the series converges absolutely for all \(x \in \mathbb{R}\) such that \(|x-a| < r\) and diverges for all \(x\) such that \(|x-a| > r\)<br>
+3) The series converges only if \(x = a\). <br>
+Furthermore, for any \(r_1 < r\) in case 2, or for an arbitrary \(r_1 \in \mathbb{R}\) in case 1, the convergence is uniform for all \(x\) such that \(|x-a| \leq r_1\)
+</li>
+<li>
+If the power series \(\sum_{n = 0}^\infty c_n (x - a)^n\) has radius of convergence \(r > 0\) (possible \(r = \infty\)) then the function \(f\) on \((a-r,a+r)\) (or on \(\mathbb{R}\), if \(r = \infty\)) given by
+$$f(x) = \sum_{n = 0}^\infty c_n (x - a)^n$$
+is differentiable. Furthermore for any \(x \in (a-r,a+r)\) (or \(x \in \mathbb{R}\), if \(r = \infty\)) we have
+$$f'(x) = \sum_{n = 0}^\infty nc_n (x - a)^{n-1} \text{ and } \int_a^x f(t) dt = \sum_{n = 0}^\infty \frac{c_n}{n+1} (x - a)^{n+1}$$
+and that all three functions have the same radius of convergence. 
+</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id = 'proof3' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+For suppose that the series converges for some \(x = \zeta\), for some \(\zeta \neq a\), and let \(0 < b < |\zeta - a|\). We shall show that \(\sum_{n = 0}^\infty c_n (x - a)^n\) converges absolutely and uniformly for all \(x\) such that \(|x-a| \leq b\). To do this, note that since \(\sum_{n = 0}^\infty c_n (\zeta - a)^n\) converges we have \(\lim_{n \to \infty} c_n (\zeta - a)^n = 0\), so that there exists a number \(M\) such that \(|c_n(\zeta - a)^n \leq M\) for all \(n\). If \(|x - a| \leq b\) then
+$$|c_n(x-a)^n| = |c_n(\zeta - a)^n |\frac{x-a}{\zeta-a}|^n \leq M |\frac{b}{\zeta - a}|^n$$
+But summing the final term over \(n\) results in a geometric series (as \(M\) is constant) with ratio less than 1, so by comparison with this series \(\sum_{n = 0}^\infty c_n (x - a)^n\) converges absolutely and uniformly for all \(x\) such that \(|x-a| \leq b\). From this fact, the proposition easily follows.
+</li>
+<li>
+We pull the same trick; but with slight variations. We find the same \(M\) that bounds our original sequence, and compare the resulting sums to the geometric sum to show that the radius of convergence for the derivative and the antiderivative is <i>at least</i> the same as the original radius of convergence. But, if you think about it, the proof applies backwards too (in that since the original sequence is the derivative of the antiderivative, then the radius of convergence of the <i>original</i> sequence is at least the radius of the antiderivative, same for the derivative), hence all three have the same radius of convergence. 
+</li>
+</ul>
+</div>
+<br>
+
+
+
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Differentiation under the Integral Sign</b> <button class = 'doHide' onclick= 'yes(4)'>Proof</button>
+<br>
+<ul>
+<li>
+Let \(a,b,c,d \in \mathbb{R}\), \(a < b\), \(c < d\), and let \(f\) be a continuous real-valued function on the subset of \(E^2\) given by
+$$\{(x,y) \in E^2 : a \leq x \leq b, c < x < d\}$$
+Suppose that \(\frac{\partial f}{\partial y}\) exists and is continuous on this set. Then the fucntion \(F : (c,d) \to \mathbb{R}\) defined by
+$$F(y) = \int_a^b f(x,y) dx$$
+is differentiable and 
+$$F'(y) = \int_a^b \frac{\partial f}{\partial y} (x,y) dx$$
+for all \(y \in (c,d)\).
+</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id = 'proof4' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+For a fixed \(y \in (c,d)\), both \(f\) and \(\partial f / \partial y\) are continuous functions of \(x\) for \(x \in [a,b]\), so both integrals in question exist. Let \(y_0 \in (c,d)\) be fixed. Choose numbers \(c',d'\) such that \(c < c' < y_0 < d' < d\). Then the set
+$$S = \{(x,y) \in E^2 : x \in [a,b], y \in [c',d']\}$$
+is compact, so that the continuous function \(\delta f / \delta y\) is uniformly continuous on \(S\). Given any \(\epsilon > 0\) choose \(\delta > 0\) such that if \((x,y) \in S\), \(x_1,y_1) \in S\) and \(\sqrt{(x-x_1)^2 + (y - y_1)^2} < \delta\) then
+$$|\frac{\delta f}{\delta y} (x,y) - \frac{\delta f}{\delta y} (x_1,y_1)| < \frac{\epsilon}{b - a}$$
+We may assume that \(\delta < \text{min}\{y_0 - c', d' - y_0\}\). Then if \(y \in \mathbb{R}\) and \(|y - y_0| < \delta\) we have \((x,y) \in S\) for any \(x \in [a,b]\). If in addition to \(|y-y_0| < \delta\) we have \(y \neq y_0\) then
+$$|\frac{F(y) - F(y_0)}{y - y_0} - \int_a^b \frac{\partial f}{\partial y} (x,y_0) dx|$$
+$$= |\int_a^b (\frac{f(x,y) - f(x,y_0)}{y - y_0} - \frac{\partial f}{\partial y}(x,y_0))dx|$$
+$$ = |\int_a^b (\frac{\partial f}{\partial y} (x,\eta) - \frac{\partial f}{\partial y} (x,y_0))dx|$$
+for some \(\eta\) between \(y\) and \(y_0\) (here we have used the mean value theorem). But \(|\eta - y_0| < |y - y_0| < \delta\) so that the epsilon condition kicks in, and the expression inside the integral is less than \(\epsilon/(b-a)\). So plugging this in we have the desired result. 
+</li>
+</ul>
+</div>
+<br>
+
+
+</body>
+</html>

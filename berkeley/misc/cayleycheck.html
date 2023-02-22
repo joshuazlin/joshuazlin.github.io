@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id = 'myc'></canvas>
+<script>
+var canvas = document.getElementById('myc')
+var context = canvas.getContext('2d')
+var ww = window.innerWidth
+var wh = window.innerHeight
+canvas.width = ww
+canvas.style.width = ww
+canvas.height = wh
+canvas.style.height = wh
+canvas.style.position = 'absolute'
+canvas.style.top = 0
+canvas.style.left = 0
+canvas.style.backgroundColor = 'beige'
+
+
+var n = 100 //radius of the entire board
+var disease = 0 //how much of the edge has been eaten away by disease
+var display = 10 //radius of square to display
+var squarewidth = 20 //width of the squares displayed
+
+var money = []
+for (var i = 0; i <= 2*n; i++){
+	money.push('ding')
+	money[money.length-1] = []
+	for (var j = 0; j <= 2*n; j++){
+		money[money.length-1].push(0)
+		
+
+	}
+
+}
+
+
+//now do 1 random pass
+for (var i = 0; i <= 2*n; i++){
+	for (var j = 0; j <= 2*n; j++){
+		if (Math.random() < 0.5){
+			if (Math.random() < 0.5){
+				if (i != 0){
+					money[i-1][j]++
+				}
+				else if (i != 2*n){
+					money[i+1][j]++
+				}
+			}
+		}
+		else{
+			if (Math.random() < 0.5){
+				if (j != 0){
+					money[i][j-1]++
+				}
+				else if (j != 2*n){
+					money[i][j+1]++
+				}
+			}
+		}
+		money[i][j]--
+	}
+}
+disease++
+
+
+function figure(a,b){
+	//given point a,b; what do?
+	maxindexes = [[a-1,b]]
+	max = money[a-1][b]
+	if (money[a+1][b] > max){
+		maxindexes = [[a+1,b]]
+	}
+	else if (money[a+1][b] == max){
+		maxindexes.push([a+1,b])
+	}
+	if (money[a][b+1] > max){
+		maxindexes = [[a,b+1]]
+	}
+	else if (money[a][b+1] == max){
+		maxindexes.push([a,b+1])
+	}
+	if (money[a][b-1] > max){
+		maxindexes = [[a,b-1]]
+	}
+	else if (money[a][b-1] == max){
+		maxindexes.push([a,b-1])
+	}
+	realindex = Math.floor(Math.random()*(maxindexes.length))
+	reala = maxindexes[realindex][0]
+	realb = maxindexes[realindex][1]
+	return([reala,realb])
+}
+
+function figure1(a,b){
+	//given point a,b; what do?
+	maxindexes = [[a-1,b]]
+	max = money[a-1][b]
+	if (money[a+1][b] > max){
+		maxindexes = [[a+1,b]]
+	}
+	else if (money[a+1][b] == max){
+		maxindexes.push([a+1,b])
+	}
+	if (money[a][b+1] > max){
+		maxindexes = [[a,b+1]]
+	}
+	else if (money[a][b+1] == max){
+		maxindexes.push([a,b+1])
+	}
+	if (money[a][b-1] > max){
+		maxindexes = [[a,b-1]]
+	}
+	else if (money[a][b-1] == max){
+		maxindexes.push([a,b-1])
+	}
+	if (money[a][b] >= max){
+		minmon = Math.min(money[a+1][b],money[a-1][b],money[a][b+1],money[a][b-1])
+		minind = []
+		if (money[a+1][b] == minmon){
+			minind.push([a+1,b])
+		}
+		if (money[a-1][b] == minmon){
+			minind.push([a-1,b])
+		}
+		if (money[a][b+1] == minmon){
+			minind.push([a,b+1])
+		}
+		if (money[a][b-1] == minmon){
+			minind.push([a,b-1])
+		}
+		realindex = Math.floor(Math.random()*(minind.length))
+		reala = minind[realindex][0]
+		realb = minind[realindex][1]
+		return([reala,realb])
+	}
+	realindex = Math.floor(Math.random()*(maxindexes.length))
+	reala = maxindexes[realindex][0]
+	realb = maxindexes[realindex][1]
+	return([reala,realb])
+}
+
+for(var disease = 1; disease <= (n-display); disease++){
+	for(var i = disease; i <= 2*n - disease; i++){
+		for (var j = disease; j <= 2*n - disease; j++){
+			whatdo = figure1(i,j)
+
+			money[i][j] = money[i][j] - 1
+			money[whatdo[0]][whatdo[1]]++
+		}
+	}
+}
+
+
+
+//now to draw
+for (var i = n-display; i <= n+display; i++){
+	for (var j = n-display; j <= n+display; j++){
+		context.fillText((money[i][j].toString()),(ww/2) + (i-n)*squarewidth,(wh/2) + (j-n)*squarewidth);
+	}
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="realStyle.css">
+</head>
+<style>
+body {
+    width: 600px;
+    margin:auto;
+}
+</style>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<body>
+    <p style="font-size: 30px">Filling objects with circles</p>
+    <!--it's not really random i swear-->
+    <p>Random number: 98</p>
+    <p>17th January 2017</p>
+
+    So over the weekend, a legendary legend of legend's visited the crib and exploded my mind with maths; and here's some of what came out of that experience.
+    <br><br>
+
+    <div class = 'pb'>
+    <div class = 'pt'>
+    For a set \(S\) in \(\mathbb{R}^2\), is there a set of closed circles \(C\) such that every point in \(S\) is contained in the union of all the closed circles; and that if a point in \(S\) is on the interior of one of the closed circles, it is not contained in any of the other circles; and that no points outside \(S\) are contained in the union of the closed circles.  
+    </div>
+    </div>
+    <br>
+
+    In rough words, you want to find out if you can find a set of closed circles that covers a given set; but doesn't overlap and doesn't cover anything not in the set. 
+    <br><br>
+    There were a couple ideas floating around in the air. One of the ideas was that for most sets (like a square) to cover them you need infinite circles. Then, if you look at the set of circle centres, you have an infinite subset of the square, which has to have a cluster point somewhere (if the square is closed (hence compact)). This should generate some issues, how do the circles behave near the cluster point?
+    <br><br>
+    Another idea would be to look at a particular circle \(A\), and look at a region \(B\) that surrounds \(A\). Then, for any integral \(N\), look at the circles that have centres at least \(N\) away from the center of circle \(A\) that cover a part of \(B\). For any particular \(N\), not all of \(B\) is covered, and as \(N\) increases you have a series of sets that get smaller and smaller, but never vanish. You can then find a point contained in all the sets, which hence is not covered by any circle. 
+    <br><br>
+    Neither of these are very formal yet; I'll keep thinking about them. In the meantime, it seems like learning measure theory would help solve this really easily. 
+    <br><br>
+
+    <div class = 'pb'>
+    <div class = 'pt'>
+    Suppose we have a square of side length \(1\). Does there exist a sequence of sets of cirlces \(C_1,C_2,C_3...\) such that 
+    $$\text{The Area of }\lim_{n \to \infty} (\cup C_n) = 1$$
+
+    </div>
+    </div>
+    <br>
+    i.e. Can we find a set of circles that covers the square's area up to any arbitrary precision?
+    <br><br>
+    <img src="circle.PNG" width="100" style="left:250px;">
+    <br>
+
+    The answer seems to be YES. First, let \(P\) be the percentage of the area of a square covered by the largest circle that fits inside the square. Now notice that the segments left after taking out the largest circle (shown in purple) are continuous, and hence Riemann Integrable (shown in the bottom right segment). This means that for any \(p > 0\) we can split each of these segments into squares where we lose at most \(p\) percent of the area of the segment. With the resulting squares, we can iterate the process (by filling each square with a circle, and splitting the remaining segments into squares such that at most \(p\) percent of the area is lost). If we repeat this process \(N\) times, the area of the entire square that we cover is:
+
+    $$A = P + (1 - P)(1 - q)P + (1-P)^2(1-q)^2P + ... + (1-P)^N(1-q)^NP$$
+
+    Now, if we take the limit as \(N \to \infty\) and \(p \to 0\), we find that the process fills the entire area of the circle. 
+    <br><br>
+
+    <div class = 'pb'>
+    <div class = 'pt'>
+    Start with an empty circle. Pick a uniformly random point thats not covered in the cirlce. Cover the largest circle with that center that does not cover any already covered area. Repeat. <br><br>
+    Let \(A_n\) be the expected area covered after \(n\) circles have been coloured. Does:
+    $$\lim_{n \to \infty} A_n = \text{ All the Area}$$
+    </div>
+    </div>
+    <br>
+    This one is still open. I posted it <a href = http://math.stackexchange.com/questions/2099647/filling-a-circle-with-circles-probably> on Math Stackexchange</a> but no answer so far. I also made a nice visualisation for it (or something like it) <a href = "../misc/circle.html">here</a>. 
+
+<br><br>
+</body>
+</html>

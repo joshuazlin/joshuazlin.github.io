@@ -1,0 +1,94 @@
+./tdf/9.html:19:    <p>Random number: 11</p>
+./tdf/18.html:19:    <p>Random number: 22</p>
+./tdf/11.html:19:    <p>Random number: 68</p>
+./tdf/3.html:19:    <p>Random number: 69</p>
+./tdf/21.html:19:    <p>Random number: 19</p>
+./tdf/7.html:19:    <p>Random number: 66</p>
+./tdf/2.html:19:    <p>Random number: 93</p>
+./tdf/about.html:12:    <p>Random number: 72</p>
+./tdf/22.html:19:    <p>Random number: 91</p>
+./tdf/4.html:19:    <p>Random number: 29</p>
+./tdf/10.html:19:    <p>Random number: 82</p>
+./tdf/19.html:19:    <p>Random number: 27</p>
+./tdf/17.html:19:    <p>Random number: 91</p>
+./tdf/6.html:19:    <p>Random number: 48</p>
+./tdf/12.html:19:    <p>Random number: 17</p>
+./tdf/20.html:19:    <p>Random number: 19</p>
+./tdf/8.html:19:    <p>Random number: 93</p>
+./tdf/5.html:19:    <p>Random number: 08</p>
+./tdf/14.html:19:    <p>Random number: 77</p>
+./tdf/1.html:16:    <p>Random number: 93</p>
+./tdf/15.html:19:    <p>Random number: 98</p>
+./tdf/template.html:19:    <p>Random number: 69</p>
+./tdf/index.html:12:    <p>Random number: 46</p>
+./tdf/16.html:19:    <p>Random number: 20</p>
+./tdf/13.html:19:    <p>Random number: 50</p>
+./old_index.html:30:    <!--<p>Random number: 20</p>
+./about/index.html:36:    <p>Random number: 56</p>
+./notes/graph/chap1.html:26:<p>Random number: 06</p>
+./notes/graph/index.html:14:    <p>Random number: 79</p>
+./notes/classics/9.html:19:    <p>Random number: 39</p>
+./notes/classics/11.html:19:    <p>Random number: 23</p>
+./notes/classics/3.html:19:    <p>Random number: 34</p>
+./notes/classics/7.html:19:    <p>Random number: 44</p>
+./notes/classics/2.html:41:    <p>Random number: 88</p>
+./notes/classics/4.html:19:    <p>Random number: 88</p>
+./notes/classics/10.html:19:    <p>Random number: 81</p>
+./notes/classics/6.html:19:    <p>Random number: 18</p>
+./notes/classics/12.html:19:    <p>Random number: 71</p>
+./notes/classics/8.html:19:    <p>Random number: 42</p>
+./notes/classics/5.html:19:    <p>Random number: 71</p>
+./notes/classics/1.html:19:    <p>Random number: 02</p>
+./notes/classics/template.html:19:    <p>Random number: 69</p>
+./notes/classics/index.html:14:    <p>Random number: 99</p>
+./notes/topology/crash.html:27:<p>Random number: 19</p>
+./notes/topology/chap1.html:27:<p>Random number: 81</p>
+./notes/topology/index.html:14:    <p>Random number: 21</p>
+./notes/104/sols2.html:14:<p>Random number: 23</p>
+./notes/104/sols1.html:14:<p>Random number: 42</p>
+./notes/104/chap8.html:27:<p>Random number: 34</p>
+./notes/104/chap6.html:27:<p>Random number: 43</p>
+./notes/104/chap3.html:28:<p>Random number: 92</p>
+./notes/104/chap2.html:14:<p>Random number: 34</p>
+./notes/104/chap7.html:27:<p>Random number: 34</p>
+./notes/104/chap1.html:34:<p>Random number: 56</p>
+./notes/104/chap4.html:27:<p>Random number: 22</p>
+./notes/104/index.html:14:    <p>Random number: 21</p>
+./notes/104/chap5.html:27:<p>Random number: 28</p>
+./notes/shakespeare/hamlet.html:19:    <p>Random number: 13</p>
+./notes/shakespeare/troiluscressida.html:19:    <p>Random number: 19</p>
+./notes/shakespeare/template.html:19:    <p>Random number: 69</p>
+./notes/shakespeare/index.html:14:    <p>Random number: 81</p>
+./notes/manifolds/chap1.html:13:<p>Random number: 18</p>
+./notes/manifolds/index.html:14:    <p>Random number: 28</p>
+./notes/2012/1.html:15:<p>Random number: 85</p>
+./notes/2012/index.html:14:    <p>Random number: 28</p>
+./notes/algebra/lec1.html:24:<p>Random number: 49</p>
+./notes/algebra/solutions.html:19:    <p>Random number: 27</p>
+./notes/algebra/template.html:24:<p>Random number: 22</p>
+./notes/algebra/index.html:14:    <p>Random number: 75</p>
+./notes/lonely/index.html:24:    <p>Random number: 11</p>
+./notes/multivariable/index.html:27:<p>Random number: 18</p>
+./notes/quantum/chap8.html:27:<p>Random number: 34</p>
+./notes/quantum/chap2.html:27:<p>Random number: 59</p>
+./notes/quantum/chap1.html:27:<p>Random number: 39</p>
+./notes/quantum/index.html:14:    <p>Random number: 99</p>
+./notes/at/questions.html:27:<p>Random number: 68</p>
+./notes/at/minnon.html:27:<p>Random number: 23</p>
+./notes/at/know.html:27:<p>Random number: 68</p>
+./notes/at/chap10.html:27:<p>Random number: 34</p>
+./notes/at/chap8.html:27:<p>Random number: 17</p>
+./notes/at/chap9.html:27:<p>Random number: 71</p>
+./notes/at/chap7.html:27:<p>Random number: 16</p>
+./notes/at/index.html:14:    <p>Random number: 81</p>
+./notes/index.html:12:    <p>Random number: 20</p>
+./misc/questions.html:27:<p>Random number: 95</p>
+./misc/books.html:12:    <p>Random number: 37</p>
+./misc/knowledge/sshRemoteJupyter.html:18:    <p>Random number: 57</p>
+./misc/knowledge/loops.html:18:    <p>Random number: 94</p>
+./misc/knowledge/matplotlib.html:18:    <p>Random number: 94</p>
+./misc/knowledge/javascript.html:18:    <p>Random number: 12</p>
+./misc/knowledge/weechat.html:18:    <p>Random number: 94</p>
+./misc/knowledge/index.html:12:    <p>Random number: 47</p>
+./misc/index.html:12:    <p>Random number: 95</p>
+./misc/required.html:27:<p>Random number: 16</p>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "realStyle.css" />
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+<script>
+function yes(x){
+    if (document.getElementById('proof' + x.toString()).style.display == 'none'){
+        document.getElementById('proof' + x.toString()).style.display = 'block'
+    }
+    else{
+        document.getElementById('proof' + x.toString()).style.display = 'none'
+    }
+}
+</script>
+
+
+
+
+<p style="font-size: 30px">Chapter 5: Differentiation</p>
+<!--it's not really random i swear-->
+<p>Random number: 28</p>
+
+<div class = "defbox">
+<div class = 'deftext'>
+Let \(f\) be a real-valued function on an open subset \(U\) of \(\mathbb{R}\). Let \(x_0 \in U\). We say that \(f\) is <i>differentiable at \(x_0\)</i> if
+$$\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}$$
+exists. If it exists, this limit, often denoted \(f'(x_0)\), is called the <i>derivative of \(f\) at \(x_0\)</i>. If \(f'(x_0)\) exists for all \(x_0 \in U\) then \(f\) is <i>differentiable on \(U\)</i>. The function \(f'\), often denoted \(df/dx\), is called the <i>derivative of \(f\)</i>.
+<br><br>
+</div>
+</div>
+<br>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Basic Properties of Derivatives</b> <button class = 'doHide' onclick= 'yes(1)'>Proof</button>
+<br>
+<ul>
+<li>
+Let \(U\) be an open subset of \(\mathbb{R}\), \(f : U \to \mathbb{R}\). If \(f\) is differentiable at \(x_0 \in U\) then \(f\) is continuous at \(x_0\). 
+</li>
+<li>
+Let \(f,g\) be real-valued functions on an open subset \(U\) of \(\mathbb{R}\). If \(f\) and \(g\) are differentiable at the point \(x_0 \in U\), then so are \(f+g\), \(f - g\), \(fg\), and, if \(g(x_0) \neq 0\), \(f/g\). Their derivatives at \(x_0\) are given by the formulas
+$$(f+g)'(x_0) = f'(x_0) + g'(x_0)$$
+$$(f - g)'(x_0) = f'(x_0) - g'(x_0)$$
+$$(fg)'(x_0) = f(x_0)g'(x_0) + f'(x_0)g(x_0)$$
+$$(f/g)'(x_0) = \frac{f'(x_0)g(x_0) - f(x_0)g'(x_0)}{(g(x_0))^2}$$
+</li>
+<li>
+Let \(U,V\) be open subsets of \(\mathbb{R}\), and let \(f: U \to V\), \(g : V \to \mathbb{R}\) be functions. Let \(x_0 \in U\) be such that \(f'(x_0)\) and \(g'(f(x_0))\) exist. Then \((g \circ f)'(x_0)\) exists and 
+
+$$(g \circ f)'(x_0) = g'(f(x_0))f'(x_0)$$
+</li>
+</ul>
+</div>
+</div>
+
+<div id = 'proof1' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+We know that \(f\) is differentiable at \(x_0\), which is equivalent to saying that
+
+$$\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}$$
+
+exists. This equation is equivalent to saying that given any \(\epsilon\), we have a \(\delta\) such that
+
+$$| \frac{f(x) - f(x_0)}{x - x_0} - f'(x_0) | \leq \epsilon$$
+
+whenever \(x\) is within the \(\delta\)-ball around \(x_0\). This equation is equivalent to:
+
+$$|f(x) - f(x_0) - f'(x_0)(x-x_0)| \leq \epsilon |x - x_0|$$
+
+Now pick an \(\epsilon_0\) and a suitable \(\delta_0\) such that 
+
+$$|f(x) - f(x_0) - f'(x_0)(x-x_0)| \leq \epsilon_0 |x-x_0|$$
+
+whenever \(x\) is within the \(\delta_0\)-ball around \(x_0\). Thus we have that:
+
+$$|f(x) - f(x_0)| \leq |f(x) - f(x_0) - f'(x_0)(x-x_0)| + |f'(x_0)(x-x_0)|$$
+$$\leq (\epsilon_0 + |f'(x_0)|)|x-x_0|$$
+
+Now for any \(\epsilon\) we can choose \(\delta = \text{min}\{\delta_0,\epsilon/(\epsilon_0 + |f'(x_0)|)\}\), we have \(|f(x)-f(x_0)| < \epsilon\) whenever \(|x-x_0| < \delta\), proving continuity.  
+
+</li>
+<li>
+$$(f+g)'(x_0) = \lim_{x \to x_0} \frac{f(x) + g(x) - f(x_0) - g(x_0)}{x - x_0}$$
+$$= f'(x_0) + g'(x_0)$$
+Same as above for \((f-g)'(x_0)\).
+$$(fg)'(x_0) = \lim_{x \to x_0} \frac{f(x)g(x) - f(x_0)g(x_0)}{x - x_0}$$
+$$= \lim_{x \to x_0} (f(x)\frac{g(x)-g(x_0)}{x-x_0} + g(x_0) \frac{f(x)-f(x_0)}{x-x_0})$$
+$$ = \lim_{x \to x_0} f(x) \cdot \lim_{x \to x_0}f(x)\frac{g(x)-g(x_0)}{x-x_0} + g(x_0) + \lim_{x \to x_0}\frac{f(x)-f(x_0)}{x-x_0}$$
+$$ = f(x_0)g'(x_0) + g(x_0) f'(x_0)$$
+To find \((f/g)'(x_0)\), it's easier to first find \((1/g)'(x_0)\) and use product rule
+$$(1/g)'(x_0) = \lim_{x \to x_0} \frac{(1/g(x)) - (1/g(x_0))}{x - x_0} = \lim_{x \to x_0} \frac{g(x_0) - g(x)}{(x-x_0)g(x_0) g(x)}$$
+$$= -\frac{\lim_{x \to x_0}\frac{g(x) - g(x_0)}{x - x_0}}{g(x_0)\lim_{x \to x_0}(g(x))} = - \frac{g'(x_0)}{(g(x_0))^2}$$
+We can now apply product rule to obtain required result. 
+</li>
+<li>
+For any fixed \(y_0\) for which \(g'(y_0)\) exists, set:
+$$A(y,y_0) := \begin{cases} \frac{g(y) - g(y_0)}{y - y_0} \ \ \ \text{ if } y \in V, y \neq y_0 \\ g'(y_0) \qquad\text{ if } y = y_0\end{cases}$$
+Notice that we have
+$$g(y) - g(y_0) = A(y,y_0)(y - y_0)$$
+for all \(y \in V\). Also
+$$\lim_{y \to y_0} A(y,y_0) = g'(y_0) = A(y_0,y_0)$$
+So \(A\) is continuous at \(y_0\). Setting \(y_0 = f(x_0)\) and \(y = f(x)\), we have that:
+
+$$(g \circ f)'(x_0) = \lim_{x \to x_0} \frac{g(f(x)) - g(f(x_0))}{x - x_0} = \lim_{x \to x_0} \frac{A(f(x),f(x_0))(f(x) - f(x_0))}{x-x_0}$$
+$$= g'(f(x_0))f'(x_0)$$
+
+</li>
+</ul>
+</div>
+<br>
+
+
+
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: The Mean Value Theorem</b> <button class = 'doHide' onclick= 'yes(2)'>Proof</button>
+<br>
+<ul>
+<li>
+Let \(f\) be a real-valued function on an open subset \(U\) of \(\mathbb{R}\) that attains a maximum or a minimum at the point \(x_0 \in U\). Then if \(f\) is differentiable at \(x_0\), \(f'(x_0) = 0\).
+</li>
+<li>
+Let \(a,b \in \mathbb{R}\), \(a < b\), and let \(f\) be a continuous real-valued function on \([a,b]\) that is differentiable on \((a,b)\). Then there exists a number \(c \in (a,b)\) such that 
+$$f(b) - f(a) = (b-a)f'(c)$$
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id = 'proof2' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+If \(f'(x_0) \neq 0\), there exists a real number \(\delta > 0\) such that if \(x \neq x_0\) and \(|x - x_0| < \delta\) then 
+$$|\frac{f(x) - f(x_0)}{x - x_0} - f'(x_0) | < \frac{|f'(x_0)|}{2}$$
+Thinking about it a bit, this is equivalent to
+$$f'(x_0) - \frac{|f'(x_0)|}{2} < \frac{f(x) - f(x_0)}{x - x_0} < f'(x_0) + \frac{|f'(x_0)|}{2}$$
+Thinking about this a bit, we see that the middle section of this inequality must be always positive or always negative for all \(x\) in a \(\delta\)-ball around \(x_0\); but clearly this cannot be the case if \(f(x_0)\) is to be a maximum or a minimum. Hence our proposition is true.
+</li>
+<li>
+First we must prove a lemma, Rolle's Theorem, which states that if we have \(a,b \in \mathbb{R}, a < b\) and \(f\) a continuous real-valued function on \([a,b]\) that is differentiable on \((a,b)\) such that \(f(a) = f(b) = 0\), then there must exist a number \(c \in (a,b)\) such that \(f'(c) = 0\). Because \([a,b]\) is compact, we can use Josh's lemma to show that there must exist a maximum and a minimum attained by \(f\) on the compact set. If the maximum and the minimum is attained at the endpoints \(a,b\), then trivially \(f(x) = 0\) for \(x \in [a,b]\) hence any \(c\) will do the trick. If not, then we can use the previous proposition.
+<br><br>
+For an arbitrary function \(f\), we can define another function \(F\) such that
+$$F(x) = f(x) - f(a)- \frac{f(b) - f(a)}{b - a} \cdot (x - a)$$
+\(F\) can be visualised as the height of \(f\) above a line connecting the points \(f(a)\) and \(f(b)\). By Rolle's Theorem, we have that for some \(c\):
+$$F'(c) = f'(c) - \frac{f(b) - f(a)}{b-a} = 0$$
+Proving the result. 
+</li>
+</ul>
+</div>
+
+
+<br>
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Taylor's Theorem</b> <button class = 'doHide' onclick= 'yes(3)'>Proof</button>
+<br>
+<ul>
+<li>
+Let \(U\) be an open interval in \(\mathbb{R}\) and let the function \(f : U \to \mathbb{R}\) be \((n+1)\) times differentiable. If for any \(a,b \in U\) we defined \(R_n(b,a) \in \mathbb{R}\) by the equation
+$$f(b) = f(a) + \frac{f'(a)(b-a)}{1!} + \frac{f''(a)(b-a)^2}{2!} + ...$$
+$$+ \frac{f^{(n)}(a)(b-a)^n}{n!} + R_n(b,a)$$
+then
+$$\frac{d}{dx} R_n(b,x) = -\frac{f^{(n+1)}(x)(b-x)^n}{n!}$$
+</li>
+<li>
+Let \(U\) be an open interval in \(\mathbb{R}\) and let the function \(f : U \to \mathbb{R}\) be \((n+1)\) times differentiable. Then for any \(a,b \in U\) we have
+$$f(b) = f(a) + \frac{f'(a)(b-a)}{1!} + \frac{f''(a)(b-a)^2}{2!} + ...$$
+$$ + \frac{f^{(n)}(a)(b-a)^n}{n!} + \frac{f^{(n+1)}(c)}{(n+1)!}(b-a)^{n+1}$$
+where \(c\) is some number between \(a\) and \(b\) (or, if \(a\) and \(b\) are equal, \(c = a\))
+</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id = 'proof3' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+For any \(x \in U\) we have
+$$f(b) = f(x) + f'(x)\frac{(b-x)}{1!} + f''(x)\frac{(b-x)^2}{2!} + ...$$
+$$ + f^{(n)}(x)\frac{(b-x)^n}{n!} + R_n(b,x)$$
+By differentiating both sides and cancelling like terms, we get the desired result.
+</li>
+<li>
+This is trivial if \(a = b\), so assume \(a \neq b\). We need to show that 
+$$R_n(b,a) = \frac{f^{(n+1)}(c)}{(n+1)!} (b-a)^{n+1}$$
+for some \(c\) between \(a\) and \(b\). There must exist some unique real number \(K\) such that
+$$R_n(b,a) = K\frac{(b-a)^{n+1}}{(n+1)!} $$
+Define a function \(g : U \to \mathbb{R}\) such that:
+$$g(x) = R_n(b,x) - K\frac{(b-x)^{n+1}}{(n+1)!}$$
+\(g\) is differentiable on \(U\), it also has the property that \(g(a) = g(b) = 0\). Hence we can apply Rolle's Theorem, and get the result we wanted. 
+</li>
+</ul>
+</div>
+<br>
+</body>
+</html>

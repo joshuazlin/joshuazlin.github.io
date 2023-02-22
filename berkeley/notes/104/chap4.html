@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "realStyle.css" />
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+
+<script>
+function yes(x){
+    if (document.getElementById('proof' + x.toString()).style.display == 'none'){
+        document.getElementById('proof' + x.toString()).style.display = 'block'
+    }
+    else{
+        document.getElementById('proof' + x.toString()).style.display = 'none'
+    }
+}
+</script>
+
+
+
+
+<p style="font-size: 30px">Chapter 4: Continuous Functions</p>
+<!--it's not really random i swear-->
+<p>Random number: 22</p>
+
+<div class = "defbox">
+<div class = 'deftext'>
+<ul>
+<li>
+Let \(E\) and \(E'\) be metric spaces, with distances denoted \(d\) and \(d'\) respectively, let \(f : E \rightarrow E'\) be a function, and let \(p_0 \in E\). Then \(f\) is said to be <i>continuous at \(p_0\)</i> if, given any real number \(\epsilon > 0\), there exists a real number \(\delta > 0\) such that if \(p \in E\) and \(d(p,p_0) < \delta\), then \(d'(f(p),f(p_0)) < \epsilon\).  
+</li>
+<li>
+In other words, if given any open ball of center \(f(p_0) \in E'\), there exists an open ball of center \(p_0 \in E\) whose image under \(f\) is contained in the former ball, then \(f\) is continuous at \(p_0\).
+</li>
+<li>
+\(f\) is said to be <i>continuous on \(E\)</i> if \(f\) is continuous at all points of \(E\).
+</li>
+</ul>
+</div>
+</div>
+<br>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Conditions for Continuity</b> <button class = 'doHide' onclick= 'yes(1)'>Proof</button>
+<br>
+<ul>
+<li>Let \(E, E'\) be metric spaces and \(f: E \rightarrow E'\) a function. Then \(f\) is continuous if and only if, for every open subset \(U\) of \(E'\), the inverse image
+$$f^{-1}(U) = \{p \in E : f(p) \in U\}$$
+is an open subset of \(E\).
+</li>
+<li>
+Let \(E,E',E''\) be metric spaces, \(f: E \rightarrow E', g: E' \rightarrow E''\) functions. Then if \(f\) and \(g\) are continuous, so is the function \(g \circ f : E \rightarrow E''\). More precisely, if \(p_0 \in E\) and \(f\) is continuous at \(p_0\) and \(g\) is continuous at \(f(p_0) \in E'\), then \(g \circ f\) is continuous at \(p_0\).
+</li>
+</ul>
+</div>
+</div>
+
+<div id = 'proof1' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+Suppose first that \(f\) is continuous. We have to prove that for any open sets \(U \in E'\), \(f^{-1}(U) \in E\) is also open. Then, for every \(p_0 \in E\), \(f(p_0) \in E'\), there exists some \(\epsilon\) such that an open ball of radius \(\epsilon\) centered at \(f(p_0)\) is contained within \(U\) (Because by assumption \(U\) is open). Because \(f\) is continuous however, we have that there must exist an open ball of some radius \(\delta\) around \(p_0 \in f^{-1}(U)\). Hence, by the definition of open sets, \(f^{-1}(U)\) is open, as it contains an open ball around all of its points. 
+<br><br>
+Next suppose that for any open sets \(U \in E'\), \(f^{-1}(U) \in E\) is also open. If we have a point \(p_0 \in E\), we can take the open ball around \(f(p_0) \in E'\) as \(U\), such that \(f^{-1}(\text{open ball of radius } \epsilon)\) is an open set in \(E\). As this open set contains \(p_0\), necessarily it contains some open ball of radius \(\delta\) around \(p_0\), hence by definition \(f\) is continuous. 
+</li>
+<li>
+The proof for this not so hard, for every \(\epsilon\) ball around \(g \circ f (p_0)\) there is a \(\delta'\) ball around \(f(p_0)\) whose image lies within the \(\epsilon\) ball by the continuity of \(g\). However, by the continuity of \(f\), the \(\delta'\) ball around \(f(p_0)\) has a corresponding \(\delta\) ball around \(p_0\) such that the image lies within the former ball. Hence, for ever \(\epsilon\) ball around \(g \circ f (p_0)\), there is a \(\delta\) ball around \(p_0\) such that the image of this ball lies within the former ball. 
+</li>
+</ul>
+</div>
+<br>
+
+<div class = "defbox">
+<div class = 'deftext'>
+Let \(E, E'\) be metric spaces, let \(p_0\) be a cluster point of \(E\), and let \(f: \{p_0\}^\complement \rightarrow E'\) be a function. A point \(q \in E'\) is called a <i>limit of \(f\) at \(p_0\)</i> if the function from \(E\) into \(E'\) which is the same as \(f\) on \(\{p_0\}^\complement\) and which takes on the value \(q\) at \(p_0\) is continuous at \(p_0\).<br><br>
+</div>
+</div>
+<br>
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Behaviour of Continuous Functions</b> <button class = 'doHide' onclick= 'yes(2)'>Proof</button>
+<br>
+<ul>
+<li>Let \(E, E'\) be metric spaces. Then a function \(f: E \rightarrow E'\) is continuous at \(p_0 \in E\) if and only if, for every sequence of points \(p_1,p_2,p_3,...\) in \(E\) such that 
+$$\lim_{n \to \infty} p_n = p_0$$
+we have
+$$\lim_{n \to \infty} f(p_n) = f(p_0)$$
+</li>
+<li>Let \(f\) and \(g\) be real valued functions on a metric space \(E\). If \(f\) and \(g\) are continuous at a point \(p_0 \in E\), then so are the functions \(f+g\), \(f - g\), \(fg\) and \(f/g\), the last under the proviso that \(g(p_0) \neq 0\) (in which case \(g(p) \neq 0\) for all points \(p\) in some open ball of center \(p_0\))
+</li>
+<li>
+Define the function \(x_i: E^n \to \mathbb{R}\) such that \(x_i ((a_1,a_2,...,a_n)) = a_i\) (i.e. the function \(x_i\) gives the \(i\)-th component of the \(n\) dimensional vector). Let \(E\) be a metric space and \(f: E \to E^n\) a function. Then \(f\) is continuous at a point \(p_0 \in E\) if and only if each component function \(x_1 \circ f, x_2 \circ f, ..., x_n \circ f\) is continuous at \(p_0\). 
+</li>
+<li>
+Let \(E, E'\) be metric spaces, \(f: E \to E'\) a continuous function. Then if \(E\) is compact, so is its image \(f(E)\). (This implies that \(f\) is bounded, as compact sets are bounded). 
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id = 'proof2' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+
+Suppose first that \(f\) is continuous at \(p_0\) and we have a sequence \(p_1,p_2,...\) that converges to \(p_0\). By the continuity of \(f\), we know that given any \(\epsilon\)-ball surrounding \(f(p_0)\) we have a \(\delta\)-ball surrounding \(p_0\) such that the image of the \(\delta\)-ball lies within the \(\epsilon\)-ball. We also know that since \(p_i\) converges to \(p_0\), for any \(\delta\)-ball around \(p_0\), for a certain \(N\), \(i > N\) implies that \(p_i\) lies within the \(\delta\)-ball. But this would imply that for \(i > N\), \(f(p_i)\) lies within the \(\epsilon\)-ball, which implies that the sequence \(f(p_i)\) converges to \(f(p_0)\).
+<br><br>
+Next, we want to prove the statement in the other direction; that if every sequence \(p_i\) which converges to \(p_0\) has the property that \(f(p_i)\) converges to \(f(p_0)\), then \(f\) is continuous at \(p_0\). Suppose that the contrary is true, that \(f\) is not continuous. This means that for some \(\epsilon\)-ball around \(f(p_0)\), there does not exist any \(\delta\)-ball around \(p_0\) such that the image of the \(\delta\)-ball lies completely in the \(\epsilon\)-ball, i.e. every \(\delta\)-ball contains some point that maps outside of the \(\epsilon\)-ball, call this the "outsider" point. We can then take the "outsider" point for \(\delta = 1\), the "outsider" point for \(\delta = 0.1\), the "outsider" point for \(\delta = 0.01\), and so on to form a sequence of points \(p_i\) that converge to \(p_0\), but such that \(f(p_i)\) is always outside the \(\epsilon\)-ball around \(f(p_0)\), so it doesn't converge to \(f(p_0)\). This breaks our assumption, hence what we set out to claim is true. 
+
+</li>
+<li>
+
+Using the previous claim, we know that each of the "composite" (not really composite) functions is continuous if every sequence \(p_i\) that converges to \(p_0\) has the property that \(f(p_i)\) also converges to \(f(p_0)\). This is easily verified though, from the limit laws proved in previous chapters (e.g. the limit of a sum is the sum of the limits, the limit of multiple is multiple of limit, etc etc).
+
+</li>
+<li>
+
+First, let's prove that the function \(x_i\) is continuous. Take any \(\epsilon\)-ball around \(x_i(q)\) where \(q\) is a point in \(n\)-dimensional Euclidean space. This represents an interval on the real number line. 'By Inspection', there must be a \(\delta\)-ball around \(q\) such that the image of this ball projected onto the real number line lies within this interval. Returning to our main proposition, if \(f\) is continuous, then trivially \(x_i \circ f\) is continuous, because it is the composition of two continuous functions. This proves our statement in the forward direction.
+<br><br>
+To prove it in the reverse direction, suppose that we have \(x_i \circ f\) is continuous at \(p_0\). For a particular \(\epsilon\), we can find a \(\delta_i\) ball around \(p_0\) such that the image of the \(delta_i\) ball lies within an \(\frac{\epsilon}{\sqrt{n}}\) ball around \(x_i(f(p_0))\). We can then set \(\delta = \text{min}\{\delta_1,\delta_2,...,\delta_n\}\), such that the image of a \(\delta\)-ball around \(p_0\) lies within an \(\frac{\epsilon}{\sqrt{n}}\) ball around \(x_i \circ f (p_0)\). So for all points within this \(\delta\)-ball, their image lies within:
+
+$$d(f(p),f(p_0)) = \sqrt{(x_1(f(p))-x_1(f(p_0)))^2 + ... + (x_n(f(p))-x_n(f(p_0)))^2}$$$$ < \sqrt{(\frac{\epsilon}{\sqrt{n}})^2 + ... + (\frac{\epsilon}{\sqrt{n}})^2} = \epsilon$$
+
+Hence, \(f\) is continuous. 
+
+</li>
+<li>
+
+Suppose \(f\) is continuous, \(E\) is compact, and we have a collection of open sets \(\{U_i\}\) that cover \(f(E)\). We know from a previous proposition that the inverse image of an open set under a continuous function is an open set, which implies that \(\cup f^{-1}(U-i)\) is a open cover for \(E\). We know however that since \(E\) is compact, that for every open cover there is a finite subcover of \(E\) that exists, denoted by \(\cup f^{-1}(U-j)\). This implies, however, that \(\{U_j\}\) is a finite subcover of \(f(E)\), hence that it is compact.  
+
+</li>
+</ul>
+</div>
+<br>
+
+
+
+<div class = "defbox">
+<div class = 'deftext'>
+Let \(E,E'\) be metric spaces with distances denoted \(d,d'\), and let \(f: E \to E'\) be a function. Then \(f\) is said to be <i>uniformly continuous</i> if, given any real number \(\epsilon > 0\), there exists a real number \(\delta > 0\) such that if \(p,q \in E\) and \(d(p,q) < \delta\) then \(d'(f(p),f(q)) < \epsilon\). <br><br>
+</div>
+</div>
+<br>
+
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: Behaviour of functions on Compact and Connected domains</b> <button class = 'doHide' onclick= 'yes(3)'>Proof</button>
+<br>
+<ul>
+<li>
+Let \(E,E'\) be metric spaces and \(f : E \to E'\) a continuous function. If \(E\) is compact, then \(f\) is uniformly continuous. 
+</li>
+<li>
+Let \(E,E'\) be metric spaces, \(f: E \to E'\) a continuous function. Then if \(E\) is connected, so is its image \(f(E)\). 
+</li>
+<li>
+Intermediate Value Theorem: If \(a,b \in \mathbb{R}\), \(a < b\), and \(f\) is a continuous real-valued function on the closed interval \([a,b]\), then for any real number \(\gamma\) between \(f(a)\) and \(f(b)\) there exists at least one point \(c \in (a,b)\) such that \(f(c) = \gamma\). 
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id = 'proof3' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+
+First, fix \(\epsilon > 0\) a real number. For each \(p \in E\), there is some number \(\delta(p)\) such that a \(\delta(p)\)-ball around \(p\) has an image lies within the \(\frac{\epsilon}{2}\)-ball around \(f(p)\). This is possible since \(f\) is continuous. Let \(B(p)\) be the open ball in \(E\) of center \(p\) and radius \(\frac{\delta(p)}{2}\). \(E\) is the union of the open sets \(B(p)\), and because \(E\) is compact, it is the union of finitely many of these open balls, \(E = B(p_1) \cup B(p_2) \cup ... B(p_n)\). Now define \(\delta = \text{min}\{\frac{\delta(p_1)}{2},...,\frac{\delta(p_n)}{2}\}\). Now suppose that \(p,q \in E\), with \(d(p,q) < \delta\). For some \(i\) we have \(p \in B(p_i)\), so that \(d(p_i,p) < \frac{\delta(p_i)}{2}\). Also \(d(p_i,q) \leq d(p_i,p) + d(p,q) \)\(< \frac{\delta(p_i)}{2} + \delta \leq \delta(p_i)\). But this implies that \(d'(f(p_i),f(p)) < \frac{\epsilon}{2}\) and \(d'(f(p_i),f(q)) < \frac{\epsilon}{2}\). Therefore:
+
+$$d'(f(p),f(q)) \leq d'(f(p),f(p_i)) + d'(f(p_i),f(q)) \leq \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+proving the theorem. 
+
+</li>
+<li>
+
+To prove this we may w.l.o.g. assume that \(f(E) = E'\). First assume that \(E'\) is not connected. Since it is not connected we can write \(f(E) = A \cup B\) where \(A,B\) are disjoint nonempty open subsets of \(f(E)\). But we know that because \(f\) is continuous, the inverse image of an open set is an open set, so we can write \(E\) as 
+$$E = f^{-1}(A) \cup f^{-1} (B)$$
+the union of two disjoint nonempty open subsets. This contradicts the fact that \(E\) is connected, proving the theorem. 
+
+</li>
+<li>
+
+Since \([a,b]\) is connected, so is \(f([a,b])\). We know that a connected subset of the reals contains every point inbetween two points within it though (check the end of the last chapter)
+
+</li>
+</ul>
+</div>
+<br>
+
+
+
+<div class = "defbox">
+<div class = 'deftext'>
+<ul>
+<li>
+Let \(E,E'\) be metric spaces and for \(n = 1, 2, 3, ...\) let \(f_n : E \to E'\) be a function. If \(p \in E\) we say that the sequence \(f_1, f_2, f_3, ...\) <i>converges at \(p\)</i> if the sequence of points \(f_1(p), f_2(p), f_3(p), ...\) of \(E'\) converges. We say that the sequence of functions \(f_1, f_2, f_3...\) <i>converges on \(E\)</i> if the sequence converges at each \(p \in E\). We say that \(f_1, f_2, f_3, ...\) converges to \(f\) where:
+
+$$f(p) = \lim_{n \to \infty} f_n(p)$$
+and we write
+$$f = \lim_{n \to \infty} f_n$$
+</li>
+<li>
+Let \(E,E'\) be metric spaces, for \(n = 1,2,3...\) let \(f_n : E \to E'\) be a function, and let \(f : E \to E'\) be another function. Then the sequence \(f_1,f_2,f_3,...\) is said to <i>converge uniformly to \(f\)</i> if, given any \(\epsilon > 0\), there is a positive integer \(N\) such that \(d'(f(p),f_n(p)) < \epsilon\) whenever \(n > N\), for all \(p \in E\). [In other words, the error function \(f - f_n\) is bounded by \(\epsilon\) for all \(n > N\)]
+</li>
+</ul>
+</div>
+</div>
+<br>
+
+
+<div class = 'pb'>
+<div class = 'pt'>
+<b>Proposition: (Uniformly) Convergent Functions</b> <button class = 'doHide' onclick= 'yes(4)'>Proof</button>
+<br>
+<ul>
+<li>
+
+Let \(E,E'\) be metric spaces, with \(E'\) complete, and let \(f_n : E \to E'\). Then the sequence of functions \(f_i\) is uniformly convergent if and only if, for any \(\epsilon > 0\), there is a positive integer \(N\) such that if \(n,m > N\) are integers then \(d'(f_n(p),f_m(p)) < \epsilon\) for all \(p \in E\).
+
+</li>
+<li>
+
+Let \(E,E'\) be metric spaces and let \(f_i\) be a uniformly convergent sequence of continuous functions from \(E\) to \(E'\). Then \(\lim_{n \to \infty}f_n\) is continuous. 
+
+</li>
+<li>
+
+Lemma: Let \(E,E'\) be metric spaces, and let \(f,g\) be continuous functions from \(E\) to \(E'\). Then the real-valued funtion on \(E\) whose value at any point \(p \in E\) is \(d'(f(p),g(p))\) is continuous. 
+
+</li>
+<li>
+
+Let \(E,E'\) be metric spaces, with \(E\) compact and \(E'\) complete. Then the set of all continuous functions from \(E\) to \(E'\), with the distance between two such functions \(f\) and \(g\) taken to be
+
+$$\text{max} \{d'(f(p),g(p)) : p \in E\}$$
+
+is a complete metric space. A sequence of points in this metric space converges if and only if it is a uniformly convergent sequence of functions on \(E\). 
+
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id = 'proof4' style = "display:none;">
+<br>
+<i>Proofs:</i> 
+<ul>
+<li>
+
+For the forward proof, assume that \(f_i\) converges uniformly to \(f\). Then for any \(\epsilon\), pick an \(N\) such that \(d'(f(p),f_n(p)) < \frac{\epsilon}{2}\) whenever \(n > N\), for all \(p \in E\). Hence if \(n,m > N\), for all \(p \in E\) we have
+
+$$d'(f_n(p),f_m(p)) \leq d'(f_n(p),f(p)) + d'(f(p),f_m(p)) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+For the backward proof, we know that since \(E'\) is complete, then every cauchy sequence attains its limit. Given \(\epsilon\), choose \(N\) such that we have \(d'(f_n(p),f_m(p)) < \frac{\epsilon}{2}\) whenever \(n,m > N\), for all \(p \in E\). Then for fixed \(n > N\) and \(p\), we have that for the sequence \(f_1(p), f_2(p),...\) all the terms after the \(N\)-th term are within a closed ball of radius \(\frac{\epsilon}{2}\) around \(f_n(p)\). Since closed balls are closed sets, the limit of the sequence \(f_1(p), f_2(p),...\) is also in the closed ball, hence we know that \(d'(f_n(p),f(p)) \leq \frac{\epsilon}{2}\). Hence if \(n > N\) we have that \(d'(f_n(p),f(p)) < \epsilon\) for all \(p \in E\), proving uniform convergence. 
+
+</li>
+<li>
+To show that \(f\) is continuous, we must show that \(f\) is continuous at every \(p_0 \in E\), so fix a \(p_0\). Fix an \(n\) such that \(d'(f(p),f_n(p)) < \epsilon/3\) for all \(p\), which is possible because it is uniformly convergent. Since \(f_n\) is continuous, we have that for some \(\delta\) that \(d(p,p_0) < \delta\) implies \(d'(f_n(p),f_n(p_0)) < \epsilon / 3\). Then we have that if \(p\) is in some \(\delta\) ball around \(p_0\), 
+$$d'(f(p),f(p_0)) \leq d'(f(p),f_n(p)) + d'(f_n(p),f_n(p_0)) + d'(f_n(p_0),f(p_0))$$
+$$ < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon$$
+Therefore \(f\) is continuous at all \(p_0\).
+</li>
+<li>
+To show this function is continuous at any given point \(p_0 \in E\), we need that \(|d'(f(p),g(p)) - d'(f(p_0),g(p_0))|\) is bounded by \(\epsilon\) as \(p\) is in some \(\delta\)-ball around \(p_0\). But we have:
+
+$$|d'(f(p),g(p)) - d'(f(p_0),g(p_0))| $$$$\leq |d'(f(p),g(p)) - d'(f(p),g(p_0))| + |d'(f(p),g(p_0)) - d'(f(p_0),g(p_0))| $$$$\leq |d'(g(p),g(p_0)) - d'(f(p),f(p_0))|$$
+
+and the last two terms, by continuity of \(f,g\), can be contained in some \(\epsilon/2\) ball with some \(\delta\)-ball around \(p_0\). Hence the function is continuous.   
+
+</li>
+<li>
+First, we must prove Josh's Lemma (stated without proof in the Rosenlicht textbook): A continuous real-valued function on a compact metric space attains a maximum. Suppose that the contrary is true, that is that the function attains no maximum. Then we can construct a sequence of points \(p_i\) such that \(f(p_n) > n\). Because these points exist in a compact metric space \(E\), we know that there must exist some convergent subsequence \(p_{a_i}\) that converges to some \(p\) in \(E\). Because the function is continuous, we have that for all \(\epsilon\), there exists some \(\delta\) such that \(f(p)\) lies within the \(\epsilon\) ball around \(f(p_0)\) whenever \(p\) lies within the \(\delta\) ball around \(p_0\). But we have a sequence \(p_{a_i}\) that converges to \(p\) with the property that \(f(p_n) > n\), so clearly this is not true. Hence Josh's lemma is true. 
+<br><br>
+
+Consider the set \(\mathfrak{F}\) of all continuous functions from \(E\) to \(E'\). We assume that \(E\) is compact. Then it is true that for any \(f,g \in \mathfrak{F}\), the distance between \(f\) and \(g\):
+
+$$\text{max}\{d'(f(p),g(p)) : p \in E\}$$
+
+is attained, as a continuous real-valued function on a compact metric space attains a maximum by Josh's Lemma. Hence we can define this maximum as the 'distance' between \(f\) and \(g\) in our metric space. Clearly \(D(f,g) = D(g,f)\), and \(D(f,g) = 0 \iff f = g\). It remains to check the triangle inequality:
+
+$$D(f,h) \leq D(f,g) + D(g,h)$$
+
+To prove this, pick \(p_0 \in E\) such that \(D(f,h) = d'(f(p_0),h(p_0))\), i.e. the maximally distant points. Then we have:
+
+$$D(f,h) = d'(f(p_0),h(p_0)) \leq d'(f(p_0),g(p_0)) + d'(g(p_0),h(p_0))$$
+$$\leq \text{max}\{d'(f(p),g(p)) : p \in E\} + \text{max}\{d'(g(p),h(p)) : p \in E\}$$
+$$= D(f,g) + D(g,h)$$
+Thus \(\mathfrak{F}\) is indeed a metric space. A sequence of points in this metric space \(f_i\) will converge if and only if
+
+$$\lim_{n \to \infty} D(f,f_n) = 0$$
+
+which is the same thing as saying that \(f_n\) is uniformly convergent. Now suppose that we have a cauchy sequence of functions, and that \(E'\) is complete. By the first proposition of this section, this cauchy sequence of functions must limit to some function \(f\), which by the second proposition of this section must be continuous. Hence the set \(\mathfrak{F}\) is complete, as every cauchy sequence converges. Hence we have proven everything we have set out to prove. 
+</li>
+</ul>
+</div>
+<br>
+
+
+
+
+</body>
+</html>
+
+
+
+

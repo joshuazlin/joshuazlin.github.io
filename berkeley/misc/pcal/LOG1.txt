@@ -1,0 +1,12 @@
+
+<date>Sunday 19th of April 2020 09:29:33 PM
+<poop>
+<mood>15
+
+<date>Sunday 19th of April 2020 09:29:50 PM
+<poop>on
+<mood>15
+
+<date>Sunday 19th of April 2020 09:30:00 PM
+<poop>on
+<mood>0
