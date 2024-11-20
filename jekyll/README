@@ -1,7 +1,0 @@
-# My blog
-
-Visit my blog at joshuazlin.github.io. To test this locally, run:
-
- > bundle exec jekyll serve --drafts
-
-
