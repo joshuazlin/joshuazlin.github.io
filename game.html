@@ -1,0 +1,127 @@
+<html>
+
+    <h1><u>Tussle</u></h1>
+
+    <h3>Rules</h3>
+    <p style="width: 600px;">
+    I am soliciting submissions to a game loosely based off the <a href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma">Iterated Prisoner's Dilemma</a>.<br>
+    A submission consists of python>=3.0 code (example submissions shown at the bottom of this webpage), that will do battle with other user-submissions.<br>
+    The objective is to acquire the most <i>points</i> by the end of the game, each player starts with 0 points, as well as 0 reputation (both of which can go negative).<br>
+    The game consists of 10,000 rounds, where in each round you are paired with a random player based on your reputation (higher reputation players are more likely to be paired with other higher reputation players).<br>
+    Each round consists of a random number of turns, where you and your opponent will play one of the following six moves at the same time:<br>
+    </p>
+    <ol start="0" style="width: 600px;">
+      <li>Steal : You gain 1 point, your opponent loses 2 points.</li>
+      <li>Donate : You lose 1 point, and your opponent gains 2 points.</li>
+      <li>Mirror : For the next 5 turns, you will play moves according to your opponents strategy. </li>
+      <li>Swap : You and your opponents points swap. You can only play this move zero or once per round. </li>
+      <li>BlockSwap : If your opponent tried to swap this turn, it doesn't work. You cannot use BlockSwap twice in a row. </li>
+    </ol>
+    <p style="width: 600px;">
+    After the round is over, you can either:
+    </p>
+    <ol start="0" style="width: 600px;">
+	<li>Upvote your opponent, increasing their reputation by 1.</li>
+	<li>Downvote your opponent, decreasing their reputation by 1.</li>
+    </ol> 
+    <p style="width: 600px;">
+    A submission consists of a python class with two methods, "move" (called on every turn), and "vote" (called after every round). <br>
+    Their type signatures are exemplified in the following example submission called <i>"Random"</i>, which plays completely randomly. <br>
+    </p>
+<pre><code>
+class Random():
+    def move(my_history,your_history,my_rep,your_rep,my_points,your_points):
+	"""
+	my_history   : A list of moves I have played this round.
+	your_history : A list of moves you have played this round.
+	my_rep       : My current reputation.
+	your_rep     : My opponents current reputation.
+	my_points    : My current points.
+	your_points  : My opponents current points.
+
+	This function should return an integer, between 0 and 4 inclusive.
+	"""
+	return random.randint(0, 4)
+
+    def vote(my_history,your_history,my_rep,your_rep,my_points,your_points):
+	"""
+	Returns an integer, between 0 and 1 inclusive. 
+	(0 is upvote opponent, 1 is downvote opponent)
+	"""
+	return random.randint(0, 1)
+</code></pre>
+    <p style="width: 600px;">
+    You can assome standard python packages, numpy, etc. are loaded.<br>
+    <b>If your "move" or "vote" returns an invalid option, or the call takes longer than 0.01 seconds, your submission will automatically submit "0" instead.</b><br>
+    For example, the <i>"Random"</i> strategy may try to Swap twice in the same round, but the second is invalid; and hence will be converted to "0 : Steal" instead.<br> 
+    </p>
+
+    <h3>Examples</h3>
+<pre><code>
+class TitForTat():
+    """
+    Note that the Steal/Donate is set up as a classic Prisoner's Dilemma: 
+    you are always incentivized to Steal, but if you both Steal, 
+    you end up worse than if you both Donate.
+    """
+    def move(my_history,your_history,my_rep,your_rep,my_points,your_points):
+	if len(my_history) == 0:
+	    #If it's the first move, cooperate.
+	    return 1
+	else:
+	    #Otherwise, I'll just do whatever you do.
+	    return your_history[-1]
+
+    def vote(my_history,your_history,my_rep,your_rep,my_points,your_points):
+	for x in your_history:
+	    #If you betrayed me by trying to steal or swap, I will downvote you
+	    if x in [0,3]:
+		return 1
+	return 0
+		
+class Default():
+    """
+    An implementation of a 'default' strategy that I think is reasonable
+    """
+    def move(my_history,your_history,my_rep,your_rep,my_points,your_points):	
+	#If nothing has happened, I will Steal.
+	if len(my_history) == 0:
+	    return 0
+	#If you have more points, I will try to Swap. If I can't, you probably
+	#have a pretty good strategy, so I'll Mirror you.
+	if (your_points > my_points + 10):
+	    if (3 not in my_history):
+		return 3
+	    else:
+		return 2	
+	#If I think you will Swap, and I can block, I will randomly block.
+	if (my_points > your_points + 10) and (my_history[-1] != 4):
+	    if random.random() < 0.5:
+		return 4
+	#I'll default to stealing.
+	return 0
+
+    def vote(my_history,your_history,my_rep,your_rep,my_points,your_points):
+	#If you have more points, I would like to be paired with you more often
+	#so I can Swap. So I want to bring my reputation towards yours:
+	if your_points > my_points:
+	    if your_rep > my_rep:
+		return 0
+	    else:
+		return 1
+	else:
+	    if your_rep > my_rep:
+		return 1
+	    else:
+		return 0
+
+</code></pre>
+
+<h3>Details on Rules</h3>
+<ul style="width: 600px;">
+  <li>Each round will have 1+X turns, where X is a Poisson random variable with mean 99 (so it is guarenteed that there is at least one turn, and there is on average 100 turns per round)</li>
+  <li>Playing "Mirror" will literally just cause the program to call the opponents "move" routine for the next 5 turns. If you happen to call Mirror whilst already Mirroring, it will reset the counter so that the next 5 turns, you call the opponents "move" routine (it "doesn't stack")</li>
+  <li>I haven't decided how the matchmaking will work yet. But the motto is: if you are higher reputation, you are more likely to be paired with high reputation players. </li>
+</ul>
+	
+</html>
